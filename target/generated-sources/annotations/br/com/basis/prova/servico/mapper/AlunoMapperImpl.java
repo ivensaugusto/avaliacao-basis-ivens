@@ -2,6 +2,7 @@ package br.com.basis.prova.servico.mapper;
 
 import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.dto.AlunoDTO;
+import br.com.basis.prova.dominio.dto.AlunoDTOSalvar;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-03T13:34:57-0300",
+    date = "2020-01-03T14:40:23-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -81,5 +82,23 @@ public class AlunoMapperImpl implements AlunoMapper {
         alunoDTO.setDisciplinas( disciplinaMapper.toDto( aluno.getDisciplinas() ) );
 
         return alunoDTO;
+    }
+
+    @Override
+    public Aluno toEntity(AlunoDTOSalvar alunoDTOSalvar) {
+        if ( alunoDTOSalvar == null ) {
+            return null;
+        }
+
+        Aluno aluno = new Aluno();
+
+        aluno.setId( alunoDTOSalvar.getId() );
+        aluno.setMatricula( alunoDTOSalvar.getMatricula() );
+        aluno.setCpf( alunoDTOSalvar.getCpf() );
+        aluno.setNome( alunoDTOSalvar.getNome() );
+        aluno.setDataNascimento( alunoDTOSalvar.getDataNascimento() );
+        aluno.setDisciplinas( disciplinaMapper.toEntity( alunoDTOSalvar.getDisciplinas() ) );
+
+        return aluno;
     }
 }
