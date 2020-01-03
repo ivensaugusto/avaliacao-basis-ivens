@@ -2,68 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98cb9c14-fd76-42e1-a165-1ee1b97ea0cd" name="Default Changelist" comment="t">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/dominio/dto/DisciplinaDTOSalvar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/mapper/DisciplinaMapperSalvar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/DisciplinaMapperSalvarImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/ivens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/ivens.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/dominio/dto/AlunoDTOSalvar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/dominio/dto/AlunoDTOSalvar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/dominio/dto/AlunoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/dominio/dto/AlunoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/dominio/dto/DisciplinaDTOSalvar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/dominio/dto/DisciplinaDTOSalvar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/recurso/AlunoRecurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/recurso/AlunoRecurso.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/recurso/DisciplinaRecurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/recurso/DisciplinaRecurso.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/AlunoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/AlunoServico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/DisciplinaServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/DisciplinaServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/mapper/AlunoMapperSalvar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/mapper/AlunoMapperSalvar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/ProvaApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/configuracao/DatabaseConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/Aluno.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/Disciplina.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/Professor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/dto/AlunoDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/dto/AlunoDTOSalvar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/dto/AlunoDetalhadoDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/dto/DisciplinaDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/dto/DisciplinaDetalhadaDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/dto/ProfessorDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/dominio/dto/ProfessorDetalhadoDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/recurso/AlunoRecurso.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/recurso/DisciplinaRecurso.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/recurso/ProfessorRecurso.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/repositorio/AlunoRepositorio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/repositorio/DisciplinaRepositorio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/repositorio/ProfessorRepositorio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/AlunoServico.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/DisciplinaServico.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/ProfessorServico.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/exception/RegistroNaoEncontradoException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/exception/RegraNegocioException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/AlunoDetalhadoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/AlunoDetalhadoMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/AlunoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/AlunoMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/AlunoMapperSalvar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/AlunoMapperSalvarImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/DisciplinaDetalhadoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/DisciplinaDetalhadoMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/DisciplinaMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/DisciplinaMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/EntityMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/ProfessorMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/basis/prova/servico/mapper/ProfessorMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/db/changelog/00000000000000_initial_schema.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/db/changelog/V01_criacao_dominio.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/db/master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/ProfessorServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/ProfessorServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/mapper/AlunoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/mapper/AlunoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/mapper/DisciplinaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/mapper/DisciplinaMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/AlunoDetalhadoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/AlunoDetalhadoMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/AlunoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/AlunoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/AlunoMapperSalvarImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/AlunoMapperSalvarImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/AlunoMapperSalvarImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/DisciplinaDetalhadoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/DisciplinaDetalhadoMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/DisciplinaMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/DisciplinaMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/DisciplinaMapperSalvarImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/DisciplinaMapperSalvarImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/ProfessorMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/br/com/basis/prova/servico/mapper/ProfessorMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/prova-0.0.1-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/prova-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,10 +130,10 @@
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state x="1644" y="2" width="800" height="729" key="#Intentions/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1577794188204" />
-    <state x="1422" y="0" width="685" height="685" key="#ProvaApplication" timestamp="1577970258195">
+    <state x="1422" y="0" width="685" height="685" key="#ProvaApplication" timestamp="1578070327177">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
-    <state x="1422" y="0" width="685" height="685" key="#ProvaApplication/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1577970258195" />
+    <state x="1422" y="0" width="685" height="685" key="#ProvaApplication/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578070327177" />
     <state x="1782" y="122" width="524" height="484" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1577971577762">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
@@ -199,6 +154,10 @@
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state x="1663" y="0" width="762" height="731" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578056322744" />
+    <state x="1782" y="113" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1578073526902">
+      <screen x="1366" y="0" width="1366" height="768" />
+    </state>
+    <state x="1782" y="113" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578073526902" />
     <state x="1512" y="0" width="1064" height="731" key="CommitChangelistDialog2" timestamp="1577965663486">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
@@ -208,42 +167,42 @@
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state x="1832" y="123" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578057726058" />
-    <state width="1320" height="181" key="GridCell.Tab.0.bottom" timestamp="1578069417665">
+    <state width="1320" height="181" key="GridCell.Tab.0.bottom" timestamp="1578077154664">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="116" key="GridCell.Tab.0.bottom/0.27.1366.704/1366.0.1366.768@0.27.1366.704" timestamp="1578016716473" />
-    <state width="1320" height="181" key="GridCell.Tab.0.bottom/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578069417665" />
-    <state width="1320" height="181" key="GridCell.Tab.0.center" timestamp="1578069417665">
+    <state width="1320" height="181" key="GridCell.Tab.0.bottom/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077154664" />
+    <state width="1320" height="181" key="GridCell.Tab.0.center" timestamp="1578077154664">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="116" key="GridCell.Tab.0.center/0.27.1366.704/1366.0.1366.768@0.27.1366.704" timestamp="1578016716473" />
-    <state width="1320" height="181" key="GridCell.Tab.0.center/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578069417665" />
-    <state width="1320" height="181" key="GridCell.Tab.0.left" timestamp="1578069417665">
+    <state width="1320" height="181" key="GridCell.Tab.0.center/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077154664" />
+    <state width="1320" height="181" key="GridCell.Tab.0.left" timestamp="1578077154664">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="116" key="GridCell.Tab.0.left/0.27.1366.704/1366.0.1366.768@0.27.1366.704" timestamp="1578016716473" />
-    <state width="1320" height="181" key="GridCell.Tab.0.left/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578069417665" />
-    <state width="1320" height="181" key="GridCell.Tab.0.right" timestamp="1578069417665">
+    <state width="1320" height="181" key="GridCell.Tab.0.left/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077154664" />
+    <state width="1320" height="181" key="GridCell.Tab.0.right" timestamp="1578077154664">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="116" key="GridCell.Tab.0.right/0.27.1366.704/1366.0.1366.768@0.27.1366.704" timestamp="1578016716473" />
-    <state width="1320" height="181" key="GridCell.Tab.0.right/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578069417665" />
-    <state width="1320" height="226" key="GridCell.Tab.1.bottom" timestamp="1577992503745">
+    <state width="1320" height="181" key="GridCell.Tab.0.right/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077154664" />
+    <state width="1320" height="226" key="GridCell.Tab.1.bottom" timestamp="1578077150161">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
-    <state width="1320" height="226" key="GridCell.Tab.1.bottom/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1577992503745" />
-    <state width="1320" height="226" key="GridCell.Tab.1.center" timestamp="1577992503745">
+    <state width="1320" height="226" key="GridCell.Tab.1.bottom/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077150161" />
+    <state width="1320" height="226" key="GridCell.Tab.1.center" timestamp="1578077150161">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
-    <state width="1320" height="226" key="GridCell.Tab.1.center/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1577992503745" />
-    <state width="1320" height="226" key="GridCell.Tab.1.left" timestamp="1577992503745">
+    <state width="1320" height="226" key="GridCell.Tab.1.center/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077150161" />
+    <state width="1320" height="226" key="GridCell.Tab.1.left" timestamp="1578077150161">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
-    <state width="1320" height="226" key="GridCell.Tab.1.left/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1577992503745" />
-    <state width="1320" height="226" key="GridCell.Tab.1.right" timestamp="1577992503745">
+    <state width="1320" height="226" key="GridCell.Tab.1.left/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077150161" />
+    <state width="1320" height="226" key="GridCell.Tab.1.right" timestamp="1578077150161">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
-    <state width="1320" height="226" key="GridCell.Tab.1.right/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1577992503745" />
+    <state width="1320" height="226" key="GridCell.Tab.1.right/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1578077150161" />
     <state x="1582" y="22" width="924" height="684" key="Maven.ArtifactSearchDialog" timestamp="1577802752515">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
@@ -269,5 +228,16 @@
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state x="1712" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.704/1366.0.1366.768@1366.0.1366.768" timestamp="1577969881573" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/basis/prova/servico/DisciplinaServico.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

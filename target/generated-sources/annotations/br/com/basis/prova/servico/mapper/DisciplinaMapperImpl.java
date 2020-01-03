@@ -3,6 +3,7 @@ package br.com.basis.prova.servico.mapper;
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
+import br.com.basis.prova.dominio.dto.DisciplinaDTOSalvar;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-03T14:40:23-0300",
+    date = "2020-01-03T15:37:25-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -83,6 +84,24 @@ public class DisciplinaMapperImpl implements DisciplinaMapper {
         return disciplina;
     }
 
+    @Override
+    public Disciplina toEntity(DisciplinaDTOSalvar disciplinaDTOSalvar) {
+        if ( disciplinaDTOSalvar == null ) {
+            return null;
+        }
+
+        Disciplina disciplina = new Disciplina();
+
+        disciplina.setProfessor( disciplinaDTOSalvarToProfessor( disciplinaDTOSalvar ) );
+        disciplina.setId( disciplinaDTOSalvar.getId() );
+        disciplina.setNome( disciplinaDTOSalvar.getNome() );
+        disciplina.setDescricao( disciplinaDTOSalvar.getDescricao() );
+        disciplina.setCargaHoraria( disciplinaDTOSalvar.getCargaHoraria() );
+        disciplina.setAtiva( disciplinaDTOSalvar.getAtiva() );
+
+        return disciplina;
+    }
+
     private Integer disciplinaProfessorId(Disciplina disciplina) {
         if ( disciplina == null ) {
             return null;
@@ -106,6 +125,18 @@ public class DisciplinaMapperImpl implements DisciplinaMapper {
         Professor professor = new Professor();
 
         professor.setId( disciplinaDTO.getIdProfessor() );
+
+        return professor;
+    }
+
+    protected Professor disciplinaDTOSalvarToProfessor(DisciplinaDTOSalvar disciplinaDTOSalvar) {
+        if ( disciplinaDTOSalvar == null ) {
+            return null;
+        }
+
+        Professor professor = new Professor();
+
+        professor.setId( disciplinaDTOSalvar.getIdProfessor() );
 
         return professor;
     }

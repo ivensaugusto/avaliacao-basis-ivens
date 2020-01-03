@@ -5,10 +5,8 @@ import br.com.basis.prova.dominio.dto.AlunoDTO;
 import br.com.basis.prova.dominio.dto.AlunoDTOSalvar;
 import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
 import br.com.basis.prova.repositorio.AlunoRepositorio;
-import br.com.basis.prova.repositorio.DisciplinaRepositorio;
 import br.com.basis.prova.servico.mapper.AlunoDetalhadoMapper;
 import br.com.basis.prova.servico.mapper.AlunoMapper;
-import br.com.basis.prova.servico.mapper.AlunoMapperSalvar;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +20,6 @@ public class AlunoServico {
     private AlunoMapper alunoMapper;
     private AlunoDetalhadoMapper alunoDetalhadoMapper;
     private AlunoRepositorio alunoRepositorio;
-    private AlunoMapperSalvar alunoMapperSalvar;
-  //  @Autowired
-    private DisciplinaRepositorio disciplinaRepositorio;
 
     public AlunoServico(AlunoMapper alunoMapper, AlunoDetalhadoMapper alunoDetalhadoMapper, AlunoRepositorio alunoRepositorio) {
         this.alunoMapper = alunoMapper;
@@ -32,9 +27,11 @@ public class AlunoServico {
         this.alunoRepositorio = alunoRepositorio;
     }
 
-    public Aluno salvar(AlunoDTOSalvar alunoDTOSalvar) {
-        Aluno alu = alunoMapperSalvar.toEntity(alunoDTOSalvar);
-        return this.alunoRepositorio.save(alu);
+    public AlunoDTO salvar(AlunoDTOSalvar alunoDTOSalvar) {
+        Aluno aluno = alunoMapper.toEntity(alunoDTOSalvar);
+        this.alunoRepositorio.save(aluno);
+        // this.disciplinaRepositorio.saveAll(aluno.getDisciplinas());
+        return alunoMapper.toDto(aluno);
     }
 
     public void excluir(Integer id) {

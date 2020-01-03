@@ -3,11 +3,8 @@ package br.com.basis.prova.servico;
 import br.com.basis.prova.dominio.Professor;
 import br.com.basis.prova.dominio.dto.ProfessorDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
-import br.com.basis.prova.repositorio.DisciplinaRepositorio;
 import br.com.basis.prova.repositorio.ProfessorRepositorio;
-import br.com.basis.prova.servico.mapper.DisciplinaMapper;
 import br.com.basis.prova.servico.mapper.ProfessorMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +16,6 @@ public class ProfessorServico {
 
     private ProfessorRepositorio professorRepositorio;
     private ProfessorMapper professorMapper;
-    private DisciplinaMapper disciplinaMapper;
-
-    @Autowired
-    private DisciplinaRepositorio disciplinaRepositorio;
 
     public ProfessorServico(ProfessorMapper professorMapper, ProfessorRepositorio professorRepositorio) {
         this.professorMapper = professorMapper;
@@ -32,7 +25,7 @@ public class ProfessorServico {
     public ProfessorDTO salvar(ProfessorDTO professorDTO) {
         Professor professor = professorMapper.toEntity(professorDTO);
         this.professorRepositorio.save(professor);
-     //   this.disciplinaRepositorio.saveAll(professor.getDisciplinas());
+        // this.disciplinaRepositorio.saveAll(professor.getDisciplinas());
         return professorMapper.toDto(professor);
     }
 

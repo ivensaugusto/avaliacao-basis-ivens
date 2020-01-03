@@ -1,6 +1,5 @@
 package br.com.basis.prova.recurso;
 
-import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDTOSalvar;
 import br.com.basis.prova.servico.DisciplinaServico;
@@ -24,14 +23,14 @@ public class DisciplinaRecurso {
     }
 
     @PostMapping("/salvar")
-    public ResponseEntity<Disciplina> salvar(@RequestBody DisciplinaDTOSalvar disciplinaSalvar) throws URISyntaxException {
-        Disciplina result = disciplinaServico.salvar(disciplinaSalvar);
+    public ResponseEntity<DisciplinaDTO> salvar(@RequestBody DisciplinaDTOSalvar disciplinaSalvar) throws URISyntaxException {
+        DisciplinaDTO result = disciplinaServico.salvar(disciplinaSalvar);
         return ResponseEntity.created(new URI(API_DISCIPLINAS + result.getId())).body(result);
     }
 
     @PutMapping("/atualizar")
-    public ResponseEntity<Disciplina> editar(@RequestBody DisciplinaDTOSalvar disciplinaSalvar) throws URISyntaxException {
-        Disciplina result = disciplinaServico.salvar(disciplinaSalvar);
+    public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaDTOSalvar disciplinaSalvar) throws URISyntaxException {
+        DisciplinaDTO result = disciplinaServico.salvar(disciplinaSalvar);
         return ResponseEntity.ok(result);
     }
 

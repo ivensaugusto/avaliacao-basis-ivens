@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class AlunoDTO {
-
+    @JsonIgnore
     private Integer id;
     private String nome;
     @JsonIgnore
