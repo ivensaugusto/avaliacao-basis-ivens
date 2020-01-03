@@ -28,8 +28,8 @@ public class AlunoServico {
         this.alunoRepositorio = alunoRepositorio;
     }
 
-    public Aluno salvar(Aluno aluno) {
-        return this.alunoRepositorio.save(aluno);
+    public Aluno salvar(AlunoDTO alunoDTO) {
+        return this.alunoRepositorio.save(alunoMapper.toEntity(alunoDTO));
     }
 
     public void excluir(Integer id) {

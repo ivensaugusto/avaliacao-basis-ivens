@@ -1,9 +1,9 @@
 package br.com.basis.prova.recurso;
 
-import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.dto.AlunoDTO;
 import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
 import br.com.basis.prova.servico.AlunoServico;
+import br.com.basis.prova.servico.mapper.AlunoMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,20 +18,21 @@ public class AlunoRecurso {
     private static final String API_ALUNOS = "/alunos";
 
     private final AlunoServico alunoServico;
+    AlunoMapper alunoMapper;
 
     public AlunoRecurso(AlunoServico alunoServico) {
         this.alunoServico = alunoServico;
     }
 
     @PostMapping("/salvar")
-    public ResponseEntity<Aluno> salvar(@RequestBody Aluno aluno) throws URISyntaxException {
-        Aluno result = alunoServico.salvar(aluno);
+    public ResponseEntity<AlunoDTO> salvar(@RequestBody AlunoDTO alunoDTO) throws URISyntaxException {
+        AlunoDTO result = alunoMapper.toDto(alunoServico.salvar(alunoDTO));
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }
 
     @PutMapping
-    public ResponseEntity<Aluno> editar(@RequestBody Aluno aluno) throws URISyntaxException {
-        Aluno result = alunoServico.salvar(aluno);
+    public ResponseEntity<AlunoDTO> editar(@RequestBody AlunoDTO alunoDTO) throws URISyntaxException {
+        AlunoDTO result = alunoMapper.toDto(alunoServico.salvar(alunoDTO));
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }
 

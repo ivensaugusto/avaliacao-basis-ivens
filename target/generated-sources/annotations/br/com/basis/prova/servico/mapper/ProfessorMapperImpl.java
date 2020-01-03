@@ -4,6 +4,7 @@ import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDTO;
+import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-02T22:08:49-0300",
+    date = "2020-01-03T08:22:27-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -81,6 +82,20 @@ public class ProfessorMapperImpl implements ProfessorMapper {
         return list;
     }
 
+    @Override
+    public List<ProfessorDetalhadoDTO> toDetalhadoDto(List<Professor> professores) {
+        if ( professores == null ) {
+            return null;
+        }
+
+        List<ProfessorDetalhadoDTO> list = new ArrayList<ProfessorDetalhadoDTO>( professores.size() );
+        for ( Professor professor : professores ) {
+            list.add( professorToProfessorDetalhadoDTO( professor ) );
+        }
+
+        return list;
+    }
+
     protected Disciplina disciplinaDTOToDisciplina(DisciplinaDTO disciplinaDTO) {
         if ( disciplinaDTO == null ) {
             return null;
@@ -137,5 +152,20 @@ public class ProfessorMapperImpl implements ProfessorMapper {
         }
 
         return list1;
+    }
+
+    protected ProfessorDetalhadoDTO professorToProfessorDetalhadoDTO(Professor professor) {
+        if ( professor == null ) {
+            return null;
+        }
+
+        ProfessorDetalhadoDTO professorDetalhadoDTO = new ProfessorDetalhadoDTO();
+
+        professorDetalhadoDTO.setId( professor.getId() );
+        professorDetalhadoDTO.setNome( professor.getNome() );
+        professorDetalhadoDTO.setMatricula( professor.getMatricula() );
+        professorDetalhadoDTO.setDisciplinas( disciplinaListToDisciplinaDTOList( professor.getDisciplinas() ) );
+
+        return professorDetalhadoDTO;
     }
 }

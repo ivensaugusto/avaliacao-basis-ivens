@@ -10,20 +10,20 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-02T22:09:23-0300",
+    date = "2020-01-03T08:22:27-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
 public class DisciplinaDetalhadoMapperImpl implements DisciplinaDetalhadoMapper {
 
     @Override
-    public List<Disciplina> toEntity(List<DisciplinaDTO> arg0) {
-        if ( arg0 == null ) {
+    public List<Disciplina> toEntity(List<DisciplinaDTO> dtoList) {
+        if ( dtoList == null ) {
             return null;
         }
 
-        List<Disciplina> list = new ArrayList<Disciplina>( arg0.size() );
-        for ( DisciplinaDTO disciplinaDTO : arg0 ) {
+        List<Disciplina> list = new ArrayList<Disciplina>( dtoList.size() );
+        for ( DisciplinaDTO disciplinaDTO : dtoList ) {
             list.add( toEntity( disciplinaDTO ) );
         }
 
@@ -31,13 +31,13 @@ public class DisciplinaDetalhadoMapperImpl implements DisciplinaDetalhadoMapper 
     }
 
     @Override
-    public List<DisciplinaDTO> toDto(List<Disciplina> arg0) {
-        if ( arg0 == null ) {
+    public List<DisciplinaDTO> toDto(List<Disciplina> entityList) {
+        if ( entityList == null ) {
             return null;
         }
 
-        List<DisciplinaDTO> list = new ArrayList<DisciplinaDTO>( arg0.size() );
-        for ( Disciplina disciplina : arg0 ) {
+        List<DisciplinaDTO> list = new ArrayList<DisciplinaDTO>( entityList.size() );
+        for ( Disciplina disciplina : entityList ) {
             list.add( toDto( disciplina ) );
         }
 
