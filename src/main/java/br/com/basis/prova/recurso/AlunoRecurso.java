@@ -19,7 +19,7 @@ public class AlunoRecurso {
     private static final String API_ALUNOS = "/alunos";
 
     private final AlunoServico alunoServico;
-    AlunoMapper alunoMapper;
+    private  AlunoMapper alunoMapper;
 
     public AlunoRecurso(AlunoServico alunoServico) {
         this.alunoServico = alunoServico;

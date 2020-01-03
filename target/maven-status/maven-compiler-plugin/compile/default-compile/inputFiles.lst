@@ -2,8 +2,10 @@
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/servico/DisciplinaServico.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/servico/ProfessorServico.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/servico/mapper/AlunoDetalhadoMapper.java
+/home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/servico/mapper/DisciplinaMapperSalvar.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/servico/mapper/DisciplinaMapper.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/dominio/dto/ProfessorDetalhadoDTO.java
+/home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/dominio/dto/DisciplinaDTOSalvar.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/dominio/dto/AlunoDetalhadoDTO.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/recurso/ProfessorRecurso.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/src/main/java/br/com/basis/prova/dominio/dto/DisciplinaDTO.java

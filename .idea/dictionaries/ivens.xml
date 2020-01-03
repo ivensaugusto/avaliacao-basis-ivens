@@ -3,12 +3,14 @@
     <words>
       <w>aluno</w>
       <w>alunos</w>
+      <w>disciplina</w>
       <w>disciplinas</w>
       <w>excluir</w>
       <w>idade</w>
       <w>matricula</w>
       <w>nascimento</w>
       <w>salvar</w>
+      <w>servico</w>
     </words>
   </dictionary>
 </component>

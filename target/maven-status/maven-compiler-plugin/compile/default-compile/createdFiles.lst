@@ -16,6 +16,8 @@ br/com/basis/prova/servico/mapper/ProfessorMapper.class
 br/com/basis/prova/servico/mapper/DisciplinaDetalhadoMapperImpl.class
 br/com/basis/prova/repositorio/AlunoRepositorio.class
 br/com/basis/prova/ProvaApplication.class
+br/com/basis/prova/servico/mapper/DisciplinaMapperSalvar.class
+br/com/basis/prova/dominio/dto/DisciplinaDTOSalvar.class
 br/com/basis/prova/servico/mapper/EntityMapper.class
 br/com/basis/prova/servico/exception/RegistroNaoEncontradoException.class
 br/com/basis/prova/servico/mapper/AlunoDetalhadoMapper.class
@@ -24,6 +26,7 @@ br/com/basis/prova/dominio/Aluno.class
 br/com/basis/prova/servico/ProfessorServico.class
 br/com/basis/prova/servico/mapper/AlunoMapper.class
 br/com/basis/prova/dominio/dto/AlunoDTO.class
+br/com/basis/prova/servico/mapper/DisciplinaMapperSalvarImpl.class
 br/com/basis/prova/servico/AlunoServico.class
 br/com/basis/prova/servico/mapper/DisciplinaDetalhadoMapper.class
 br/com/basis/prova/dominio/Disciplina.class

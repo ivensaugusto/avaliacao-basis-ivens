@@ -23,6 +23,7 @@ public class AlunoServico {
     private AlunoDetalhadoMapper alunoDetalhadoMapper;
     private AlunoRepositorio alunoRepositorio;
     private AlunoMapperSalvar alunoMapperSalvar;
+  //  @Autowired
     private DisciplinaRepositorio disciplinaRepositorio;
 
     public AlunoServico(AlunoMapper alunoMapper, AlunoDetalhadoMapper alunoDetalhadoMapper, AlunoRepositorio alunoRepositorio) {

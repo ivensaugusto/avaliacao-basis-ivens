@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {})
 public interface AlunoMapperSalvar extends EntityMapper<AlunoDTOSalvar, Aluno> {
-    
+ //   Aluno toDto(AlunoDTOSalvar alunoSalvar);
 }

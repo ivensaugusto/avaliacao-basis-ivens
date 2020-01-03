@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-03T11:46:06-0300",
+    date = "2020-01-03T13:34:57-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -20,31 +20,31 @@ public class AlunoMapperImpl implements AlunoMapper {
     private DisciplinaMapper disciplinaMapper;
 
     @Override
-    public Aluno toEntity(AlunoDTO arg0) {
-        if ( arg0 == null ) {
+    public Aluno toEntity(AlunoDTO dto) {
+        if ( dto == null ) {
             return null;
         }
 
         Aluno aluno = new Aluno();
 
-        aluno.setId( arg0.getId() );
-        aluno.setMatricula( arg0.getMatricula() );
-        aluno.setCpf( arg0.getCpf() );
-        aluno.setNome( arg0.getNome() );
-        aluno.setDataNascimento( arg0.getDataNascimento() );
-        aluno.setDisciplinas( disciplinaMapper.toEntity( arg0.getDisciplinas() ) );
+        aluno.setId( dto.getId() );
+        aluno.setMatricula( dto.getMatricula() );
+        aluno.setCpf( dto.getCpf() );
+        aluno.setNome( dto.getNome() );
+        aluno.setDataNascimento( dto.getDataNascimento() );
+        aluno.setDisciplinas( disciplinaMapper.toEntity( dto.getDisciplinas() ) );
 
         return aluno;
     }
 
     @Override
-    public List<Aluno> toEntity(List<AlunoDTO> arg0) {
-        if ( arg0 == null ) {
+    public List<Aluno> toEntity(List<AlunoDTO> dtoList) {
+        if ( dtoList == null ) {
             return null;
         }
 
-        List<Aluno> list = new ArrayList<Aluno>( arg0.size() );
-        for ( AlunoDTO alunoDTO : arg0 ) {
+        List<Aluno> list = new ArrayList<Aluno>( dtoList.size() );
+        for ( AlunoDTO alunoDTO : dtoList ) {
             list.add( toEntity( alunoDTO ) );
         }
 
@@ -52,13 +52,13 @@ public class AlunoMapperImpl implements AlunoMapper {
     }
 
     @Override
-    public List<AlunoDTO> toDto(List<Aluno> arg0) {
-        if ( arg0 == null ) {
+    public List<AlunoDTO> toDto(List<Aluno> entityList) {
+        if ( entityList == null ) {
             return null;
         }
 
-        List<AlunoDTO> list = new ArrayList<AlunoDTO>( arg0.size() );
-        for ( Aluno aluno : arg0 ) {
+        List<AlunoDTO> list = new ArrayList<AlunoDTO>( entityList.size() );
+        for ( Aluno aluno : entityList ) {
             list.add( toDto( aluno ) );
         }
 
