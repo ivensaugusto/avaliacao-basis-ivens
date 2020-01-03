@@ -4,9 +4,11 @@
       <w>aluno</w>
       <w>alunos</w>
       <w>disciplinas</w>
+      <w>excluir</w>
       <w>idade</w>
       <w>matricula</w>
       <w>nascimento</w>
+      <w>salvar</w>
     </words>
   </dictionary>
 </component>
