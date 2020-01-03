@@ -1,17 +1,11 @@
 package br.com.basis.prova.recurso;
 
+import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.dto.AlunoDTO;
 import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
 import br.com.basis.prova.servico.AlunoServico;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,16 +23,16 @@ public class AlunoRecurso {
         this.alunoServico = alunoServico;
     }
 
-    @PostMapping
-    public ResponseEntity<AlunoDTO> salvar(@RequestBody AlunoDTO alunoDTO) throws URISyntaxException {
-        AlunoDTO result = alunoServico.salvar(alunoDTO);
+    @PostMapping("/salvar")
+    public ResponseEntity<Aluno> salvar(@RequestBody Aluno aluno) throws URISyntaxException {
+        Aluno result = alunoServico.salvar(aluno);
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }
 
     @PutMapping
-    public ResponseEntity<AlunoDTO> editar(@RequestBody AlunoDTO alunoDTO) throws URISyntaxException {
-        AlunoDTO result = alunoServico.salvar(alunoDTO);
-        return ResponseEntity.ok(result);
+    public ResponseEntity<Aluno> editar(@RequestBody Aluno aluno) throws URISyntaxException {
+        Aluno result = alunoServico.salvar(aluno);
+        return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }
 
     @DeleteMapping("/{id}")

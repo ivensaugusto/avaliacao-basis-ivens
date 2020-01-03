@@ -49,5 +49,4 @@ public class Disciplina {
     @JsonBackReference
     @ManyToMany(mappedBy = "disciplinas", fetch = FetchType.LAZY)
     private List<Aluno> alunos = new ArrayList<>();
-
 }

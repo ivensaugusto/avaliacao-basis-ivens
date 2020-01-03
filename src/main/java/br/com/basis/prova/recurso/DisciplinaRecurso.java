@@ -1,17 +1,10 @@
 package br.com.basis.prova.recurso;
 
+import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
-import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import br.com.basis.prova.servico.DisciplinaServico;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,15 +22,15 @@ public class DisciplinaRecurso {
         this.disciplinaServico = disciplinaServico;
     }
 
-    @PostMapping
-    public ResponseEntity<DisciplinaDTO> salvar(@RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
-        DisciplinaDTO result = disciplinaServico.salvar(disciplinaDTO);
+    @PostMapping("/salvar")
+    public ResponseEntity<Disciplina> salvar(@RequestBody Disciplina disciplina) throws URISyntaxException {
+        Disciplina result = disciplinaServico.salvar(disciplina);
         return ResponseEntity.created(new URI(API_DISCIPLINAS + result.getId())).body(result);
     }
 
-    @PutMapping
-    public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
-        DisciplinaDTO result = disciplinaServico.salvar(disciplinaDTO);
+    @PutMapping("/atualizar")
+    public ResponseEntity<Disciplina> editar(@RequestBody Disciplina disciplina) throws URISyntaxException {
+        Disciplina result = disciplinaServico.salvar(disciplina);
         return ResponseEntity.ok(result);
     }
 
@@ -53,7 +46,7 @@ public class DisciplinaRecurso {
     }
 
     @GetMapping("/detalhes")
-    public ResponseEntity<List<DisciplinaDetalhadaDTO>> detalhar() {
+    public ResponseEntity<List<DisciplinaDTO>> detalhar() {
         return ResponseEntity.ok(disciplinaServico.detalhar());
     }
 

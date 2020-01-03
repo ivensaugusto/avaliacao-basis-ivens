@@ -1,5 +1,6 @@
 package br.com.basis.prova.dominio.dto;
 
+import br.com.basis.prova.dominio.Disciplina;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,6 @@ public class ProfessorDetalhadoDTO {
     private Integer id;
     private String nome;
     private String matricula;
-    private List<String> disciplinas = new ArrayList<>();
+    private List<Disciplina> disciplinas = new ArrayList<>();
 
 }

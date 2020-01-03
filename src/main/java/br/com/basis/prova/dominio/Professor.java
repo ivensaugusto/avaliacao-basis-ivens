@@ -41,4 +41,6 @@ public class Professor {
 
     @OneToMany(mappedBy = "professor")
     private List<Disciplina> disciplinas = new ArrayList<>();
+
+
 }
