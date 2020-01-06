@@ -31,7 +31,7 @@ public class AlunoRecurso {
 
     @PutMapping
     public ResponseEntity<AlunoDTO> editar(@RequestBody AlunoDTOSalvar alunoDTOSalvar) throws URISyntaxException {
-        AlunoDTO result = alunoServico.salvar(alunoDTOSalvar);
+        AlunoDTO result = alunoServico.editar(alunoDTOSalvar);
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }
 

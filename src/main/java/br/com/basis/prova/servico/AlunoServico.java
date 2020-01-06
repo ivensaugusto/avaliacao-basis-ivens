@@ -57,4 +57,9 @@ public class AlunoServico {
         return alunos;
     }
 
+    public AlunoDTO editar(AlunoDTOSalvar alunoDTOSalvar) {
+        Aluno aluno = this.alunoRepositorio.findByMatricula(alunoDTOSalvar.getMatricula());
+        alunoDTOSalvar.setId(aluno.getId());
+        return alunoMapper.toDto(this.alunoRepositorio.save(alunoMapper.toEntity(alunoDTOSalvar)));
+    }
 }

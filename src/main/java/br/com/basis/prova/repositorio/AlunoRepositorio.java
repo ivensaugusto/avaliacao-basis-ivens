@@ -18,4 +18,5 @@ public interface AlunoRepositorio extends JpaRepository<Aluno, Integer>, JpaSpec
             , nativeQuery = true)
     void deleteByMatricula(@Param("matricula") String matricula);
 
+    Aluno findByMatricula(String matricula);
 }
