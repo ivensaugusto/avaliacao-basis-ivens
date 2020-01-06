@@ -1,8 +1,10 @@
 package br.com.basis.prova.servico.mapper;
 
 import br.com.basis.prova.dominio.Aluno;
+import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.dto.AlunoDTO;
 import br.com.basis.prova.dominio.dto.AlunoDTOSalvar;
+import br.com.basis.prova.dominio.dto.DisciplinaDTOSalvar;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-03T15:37:26-0300",
+    date = "2020-01-06T15:37:50-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -74,11 +76,11 @@ public class AlunoMapperImpl implements AlunoMapper {
 
         AlunoDTO alunoDTO = new AlunoDTO();
 
-        alunoDTO.setDataNascimento( aluno.getDataNascimento() );
         alunoDTO.setId( aluno.getId() );
         alunoDTO.setNome( aluno.getNome() );
         alunoDTO.setCpf( aluno.getCpf() );
         alunoDTO.setMatricula( aluno.getMatricula() );
+        alunoDTO.setDataNascimento( aluno.getDataNascimento() );
         alunoDTO.setDisciplinas( disciplinaMapper.toDto( aluno.getDisciplinas() ) );
 
         return alunoDTO;
@@ -97,8 +99,21 @@ public class AlunoMapperImpl implements AlunoMapper {
         aluno.setCpf( alunoDTOSalvar.getCpf() );
         aluno.setNome( alunoDTOSalvar.getNome() );
         aluno.setDataNascimento( alunoDTOSalvar.getDataNascimento() );
-        aluno.setDisciplinas( disciplinaMapper.toEntity( alunoDTOSalvar.getDisciplinas() ) );
+        aluno.setDisciplinas( disciplinaDTOSalvarListToDisciplinaList( alunoDTOSalvar.getDisciplinas() ) );
 
         return aluno;
+    }
+
+    protected List<Disciplina> disciplinaDTOSalvarListToDisciplinaList(List<DisciplinaDTOSalvar> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Disciplina> list1 = new ArrayList<Disciplina>( list.size() );
+        for ( DisciplinaDTOSalvar disciplinaDTOSalvar : list ) {
+            list1.add( disciplinaMapper.toEntity( disciplinaDTOSalvar ) );
+        }
+
+        return list1;
     }
 }

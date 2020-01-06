@@ -1,19 +1,19 @@
 package br.com.basis.prova.servico.mapper;
 
 import br.com.basis.prova.dominio.Disciplina;
-import br.com.basis.prova.dominio.dto.DisciplinaDTO;
+import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {ProfessorMapper.class})
-public interface DisciplinaDetalhadoMapper extends EntityMapper<DisciplinaDTO, Disciplina> {
+public interface DisciplinaDetalhadoMapper extends EntityMapper<DisciplinaDetalhadaDTO, Disciplina> {
 
     @Override
-    @Mapping(target = "idProfessor", source = "professor.id")
-    DisciplinaDTO toDto(Disciplina disciplina);
+    @Mapping(target = "nomeProfessor", source = "professor.nome")
+    DisciplinaDetalhadaDTO toDto(Disciplina disciplina);
 
     @Override
-    @Mapping(target = "professor.id", source = "idProfessor")
-    Disciplina toEntity(DisciplinaDTO disciplinaDTO);
+    @Mapping(target = "professor.nome", source = "nomeProfessor")
+    Disciplina toEntity(DisciplinaDetalhadaDTO disciplinaDetalhadaDTO);
 
 }

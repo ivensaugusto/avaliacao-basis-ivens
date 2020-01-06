@@ -23,7 +23,7 @@ public class AlunoRecurso {
         this.alunoServico = alunoServico;
     }
 
-    @PostMapping("/salvar")
+    @PostMapping
     public ResponseEntity<AlunoDTO> salvar(@RequestBody AlunoDTOSalvar alunoDTOSalvar) throws URISyntaxException {
         AlunoDTO result = alunoServico.salvar(alunoDTOSalvar);
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
@@ -38,6 +38,12 @@ public class AlunoRecurso {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Integer id) {
         alunoServico.excluir(id);
+        return ResponseEntity.status(200).build();
+    }
+
+    @DeleteMapping("/deletePorMatricula/{matricula}")
+    public ResponseEntity<Void> excluirPorMatricula(@PathVariable("matricula") String matricula) {
+        alunoServico.excluirPorMatricula(matricula);
         return ResponseEntity.status(200).build();
     }
 

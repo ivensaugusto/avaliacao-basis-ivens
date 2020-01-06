@@ -2,6 +2,7 @@ package br.com.basis.prova.recurso;
 
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDTOSalvar;
+import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import br.com.basis.prova.servico.DisciplinaServico;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,13 @@ public class DisciplinaRecurso {
         this.disciplinaServico = disciplinaServico;
     }
 
-    @PostMapping("/salvar")
+    @PostMapping
     public ResponseEntity<DisciplinaDTO> salvar(@RequestBody DisciplinaDTOSalvar disciplinaSalvar) throws URISyntaxException {
         DisciplinaDTO result = disciplinaServico.salvar(disciplinaSalvar);
         return ResponseEntity.created(new URI(API_DISCIPLINAS + result.getId())).body(result);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaDTOSalvar disciplinaSalvar) throws URISyntaxException {
         DisciplinaDTO result = disciplinaServico.salvar(disciplinaSalvar);
         return ResponseEntity.ok(result);
@@ -46,7 +47,7 @@ public class DisciplinaRecurso {
     }
 
     @GetMapping("/detalhes")
-    public ResponseEntity<List<DisciplinaDTO>> detalhar() {
+    public ResponseEntity<List<DisciplinaDetalhadaDTO>> detalhar() {
         return ResponseEntity.ok(disciplinaServico.detalhar());
     }
 

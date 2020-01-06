@@ -30,12 +30,15 @@ public class AlunoServico {
     public AlunoDTO salvar(AlunoDTOSalvar alunoDTOSalvar) {
         Aluno aluno = alunoMapper.toEntity(alunoDTOSalvar);
         this.alunoRepositorio.save(aluno);
-        // this.disciplinaRepositorio.saveAll(aluno.getDisciplinas());
         return alunoMapper.toDto(aluno);
     }
 
     public void excluir(Integer id) {
         this.alunoRepositorio.deleteById(id);
+    }
+
+    public void excluirPorMatricula(String matricula) {
+       this.alunoRepositorio.deleteByMatricula(matricula);
     }
 
     public List<AlunoDTO> consultar() {

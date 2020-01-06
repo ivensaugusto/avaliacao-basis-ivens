@@ -19,6 +19,5 @@ public class AlunoDTOSalvar {
     private String matricula;
     private LocalDate dataNascimento;
     private Integer idade;
-   // @JsonIgnore
-    private List<DisciplinaDTO> disciplinas = new ArrayList<>();
+    private List<DisciplinaDTOSalvar> disciplinas = new ArrayList<>();
 }
