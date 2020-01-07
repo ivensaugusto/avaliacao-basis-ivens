@@ -35,8 +35,10 @@ br/com/basis/prova/servico/AlunoServico.class
 br/com/basis/prova/servico/mapper/DisciplinaDetalhadoMapper.class
 br/com/basis/prova/dominio/Disciplina.class
 br/com/basis/prova/servico/exception/RegraNegocioException.class
+br/com/basis/prova/servico/mapper/AlunoMapperSalvarImpl.class
 br/com/basis/prova/recurso/ProfessorRecurso.class
 br/com/basis/prova/repositorio/ProfessorRepositorio.class
 br/com/basis/prova/servico/mapper/ProfessorDetalhadoMapper.class
+br/com/basis/prova/servico/mapper/AlunoMapperSalvar.class
 br/com/basis/prova/dominio/dto/AlunoDetalhadoDTO.class
 br/com/basis/prova/dominio/dto/DisciplinaDetalhadaDTO.class

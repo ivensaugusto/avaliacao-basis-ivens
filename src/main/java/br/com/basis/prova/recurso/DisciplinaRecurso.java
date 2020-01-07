@@ -31,13 +31,19 @@ public class DisciplinaRecurso {
 
     @PutMapping
     public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaDTOSalvar disciplinaSalvar) throws URISyntaxException {
-        DisciplinaDTO result = disciplinaServico.salvar(disciplinaSalvar);
+        DisciplinaDTO result = disciplinaServico.editar(disciplinaSalvar);
         return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Integer id) {
         disciplinaServico.excluir(id);
+        return ResponseEntity.status(200).build();
+    }
+
+    @DeleteMapping("/deletePorNome/{nome}")
+    public ResponseEntity<Void> excluirPorNome(@PathVariable("nome") String nome) {
+        disciplinaServico.excluirPorNome(nome);
         return ResponseEntity.status(200).build();
     }
 

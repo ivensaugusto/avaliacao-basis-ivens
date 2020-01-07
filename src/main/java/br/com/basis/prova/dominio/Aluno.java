@@ -23,7 +23,6 @@ public class Aluno {
     @Column(name = "ID", nullable = false)
     private Integer id;
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "MATRICULA", nullable = false)
     private String matricula;
 
@@ -41,7 +40,7 @@ public class Aluno {
     @ManyToMany(cascade = CascadeType.ALL/*, fetch = FetchType.LAZY*/)
     @JoinTable(name = "ALUNO_DISCIPLINA",
             joinColumns = @JoinColumn(name = "ID_ALUNO", referencedColumnName = "ID"),
-            inverseJoinColumns= @JoinColumn(name = "ID_DISCIPLINA", referencedColumnName = "ID"))
+            inverseJoinColumns = @JoinColumn(name = "ID_DISCIPLINA", referencedColumnName = "ID"))
     private List<Disciplina> disciplinas = new ArrayList<>();
 
 }

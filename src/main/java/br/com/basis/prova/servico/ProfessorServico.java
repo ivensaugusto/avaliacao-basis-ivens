@@ -40,7 +40,16 @@ public class ProfessorServico {
     }
 
     public void excluir(Integer id) {
-        this.professorRepositorio.deleteById(id);
+        try {
+            this.professorRepositorio.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //TODO mensagem de erro de professor com disciplina.
+        }
+    }
+
+    public void excluirPorMatricula(String matricula) { //TODO mensagem de erro de professor com disciplina.
+        this.professorRepositorio.deleteByMatricula(matricula);
     }
 
     public List<ProfessorDTO> consultar() {
@@ -53,11 +62,11 @@ public class ProfessorServico {
 
     public List<ProfessorDetalhadoDTO> detalhar() {
         List<ProfessorDetalhadoDTO> professoresDetalhadoDTO = professorDetalhadoMapper.toDto(this.professorRepositorio.findAll());
-        for (ProfessorDetalhadoDTO professorDetalhadoDTO: professoresDetalhadoDTO) {
+        for (ProfessorDetalhadoDTO professorDetalhadoDTO : professoresDetalhadoDTO) {
             List<String> list = new ArrayList<String>();
             List<DisciplinaDTO> disciplinasDTO = professorDetalhadoDTO.getDisciplinas();
             for (DisciplinaDTO disciplinaDTO : disciplinasDTO) {
-                if(disciplinaDTO.getAtiva()==1) {// 1 igual a ativo true.
+                if (disciplinaDTO.getAtiva() == 1) {// 1 igual a ativo true.
                     list.add(disciplinaDTO.getNome());
                 }
                 professorDetalhadoDTO.setNomeDisciplina(list);
@@ -66,4 +75,12 @@ public class ProfessorServico {
         return professoresDetalhadoDTO;
     }
 
+    public ProfessorDTO editar(ProfessorDTOSalvar professorDTOSalvar) {
+        Professor professor = this.professorRepositorio.findByMatricula(professorDTOSalvar.getMatricula());
+        professorDTOSalvar.setId(professor.getId());
+        professor = professorMapperSalvar.toEntity(professorDTOSalvar);
+        this.professorRepositorio.save(professor);
+        return professorMapper.toDto(professor);
+    }
 }
+

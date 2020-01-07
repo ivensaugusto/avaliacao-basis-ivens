@@ -31,14 +31,20 @@ public class ProfessorRecurso {
     }
 
     @PutMapping
-    public ResponseEntity<ProfessorDetalhadoDTO> editar(@RequestBody ProfessorDTOSalvar professorDTOSalvar) throws URISyntaxException {
-        ProfessorDetalhadoDTO result = professorServico.salvar(professorDTOSalvar);
+    public ResponseEntity<ProfessorDTO> editar(@RequestBody ProfessorDTOSalvar professorDTOSalvar) throws URISyntaxException {
+        ProfessorDTO result = professorServico.editar(professorDTOSalvar);
         return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Integer id) {
         professorServico.excluir(id);
+        return ResponseEntity.status(200).build();
+    }
+
+    @DeleteMapping("/deletePorMatricula/{matricula}")
+    public ResponseEntity<Void> excluirPorMatricula(@PathVariable("matricula") String matricula) {
+        professorServico.excluirPorMatricula(matricula);
         return ResponseEntity.status(200).build();
     }
 

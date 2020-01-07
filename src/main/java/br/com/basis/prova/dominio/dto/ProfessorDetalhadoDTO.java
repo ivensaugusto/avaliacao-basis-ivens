@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 public class ProfessorDetalhadoDTO {
 
+    @JsonIgnore
     private Integer id;
     private String nome;
     private String matricula;
