@@ -2,13 +2,13 @@ package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.dto.AlunoDTO;
-import br.com.basis.prova.dominio.dto.AlunoDTOSalvar;
+import br.com.basis.prova.dominio.dto.AlunoGravarDTO;
 import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.repositorio.AlunoRepositorio;
 import br.com.basis.prova.servico.mapper.AlunoDetalhadoMapper;
 import br.com.basis.prova.servico.mapper.AlunoMapper;
-import br.com.basis.prova.servico.mapper.AlunoMapperSalvar;
+import br.com.basis.prova.servico.mapper.AlunoGravarMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,22 +23,22 @@ public class AlunoServico {
     private AlunoMapper alunoMapper;
     private AlunoDetalhadoMapper alunoDetalhadoMapper;
     private AlunoRepositorio alunoRepositorio;
-    private AlunoMapperSalvar alunoMapperSalvar;
+    private AlunoGravarMapper alunoGravarMapper;
     //private AlunoDetalhadoDTO alunoDetalhadoDTO;
 
     public AlunoServico(AlunoMapper alunoMapper, AlunoDetalhadoMapper alunoDetalhadoMapper,
-                        AlunoMapperSalvar alunoMapperSalvar, AlunoRepositorio alunoRepositorio) {
+                        AlunoGravarMapper alunoGravarMapper, AlunoRepositorio alunoRepositorio) {
         this.alunoMapper = alunoMapper;
         this.alunoDetalhadoMapper = alunoDetalhadoMapper;
         this.alunoRepositorio = alunoRepositorio;
-        this.alunoMapperSalvar = alunoMapperSalvar;
+        this.alunoGravarMapper = alunoGravarMapper;
 
     }
 
-    public AlunoDTO salvar(AlunoDTOSalvar alunoDTOSalvar) {//TODO mensagem de erro matricula já existe
-        Aluno aluno = this.alunoRepositorio.findByMatricula(alunoDTOSalvar.getMatricula());
+    public AlunoDTO salvar(AlunoGravarDTO alunoGravarDTO) {//TODO mensagem de erro matricula já existe
+        Aluno aluno = this.alunoRepositorio.findByMatricula(alunoGravarDTO.getMatricula());
         if (aluno == null) {
-            aluno = alunoMapperSalvar.toEntity(alunoDTOSalvar);
+            aluno = alunoGravarMapper.toEntity(alunoGravarDTO);
             this.alunoRepositorio.save(aluno);
         }
         return alunoMapper.toDto(aluno);
@@ -70,10 +70,10 @@ public class AlunoServico {
         return alunos;
     }
 
-    public AlunoDTO editar(AlunoDTOSalvar alunoDTOSalvar) {
-        Aluno aluno = this.alunoRepositorio.findByMatricula(alunoDTOSalvar.getMatricula());
-        alunoDTOSalvar.setId(aluno.getId());
-        aluno = alunoMapperSalvar.toEntity(alunoDTOSalvar);
+    public AlunoDTO editar(AlunoGravarDTO alunoGravarDTO) {
+        Aluno aluno = this.alunoRepositorio.findByMatricula(alunoGravarDTO.getMatricula());
+        alunoGravarDTO.setId(aluno.getId());
+        aluno = alunoGravarMapper.toEntity(alunoGravarDTO);
         this.alunoRepositorio.save(aluno);
         return alunoMapper.toDto(aluno);
     }

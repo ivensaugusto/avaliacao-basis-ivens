@@ -3,7 +3,7 @@ package br.com.basis.prova.servico.mapper;
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
-import br.com.basis.prova.dominio.dto.DisciplinaDTOSalvar;
+import br.com.basis.prova.dominio.dto.DisciplinaGravarDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -11,20 +11,20 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-06T22:39:36-0300",
+    date = "2020-01-06T22:59:50-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
 public class DisciplinaMapperImpl implements DisciplinaMapper {
 
     @Override
-    public List<Disciplina> toEntity(List<DisciplinaDTO> dtoList) {
-        if ( dtoList == null ) {
+    public List<Disciplina> toEntity(List<DisciplinaDTO> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<Disciplina> list = new ArrayList<Disciplina>( dtoList.size() );
-        for ( DisciplinaDTO disciplinaDTO : dtoList ) {
+        List<Disciplina> list = new ArrayList<Disciplina>( arg0.size() );
+        for ( DisciplinaDTO disciplinaDTO : arg0 ) {
             list.add( toEntity( disciplinaDTO ) );
         }
 
@@ -32,13 +32,13 @@ public class DisciplinaMapperImpl implements DisciplinaMapper {
     }
 
     @Override
-    public List<DisciplinaDTO> toDto(List<Disciplina> entityList) {
-        if ( entityList == null ) {
+    public List<DisciplinaDTO> toDto(List<Disciplina> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<DisciplinaDTO> list = new ArrayList<DisciplinaDTO>( entityList.size() );
-        for ( Disciplina disciplina : entityList ) {
+        List<DisciplinaDTO> list = new ArrayList<DisciplinaDTO>( arg0.size() );
+        for ( Disciplina disciplina : arg0 ) {
             list.add( toDto( disciplina ) );
         }
 
@@ -85,19 +85,19 @@ public class DisciplinaMapperImpl implements DisciplinaMapper {
     }
 
     @Override
-    public Disciplina toEntity(DisciplinaDTOSalvar disciplinaDTOSalvar) {
-        if ( disciplinaDTOSalvar == null ) {
+    public Disciplina toEntity(DisciplinaGravarDTO disciplinaGravarDTO) {
+        if ( disciplinaGravarDTO == null ) {
             return null;
         }
 
         Disciplina disciplina = new Disciplina();
 
-        disciplina.setProfessor( disciplinaDTOSalvarToProfessor( disciplinaDTOSalvar ) );
-        disciplina.setId( disciplinaDTOSalvar.getId() );
-        disciplina.setNome( disciplinaDTOSalvar.getNome() );
-        disciplina.setDescricao( disciplinaDTOSalvar.getDescricao() );
-        disciplina.setCargaHoraria( disciplinaDTOSalvar.getCargaHoraria() );
-        disciplina.setAtiva( disciplinaDTOSalvar.getAtiva() );
+        disciplina.setProfessor( disciplinaGravarDTOToProfessor( disciplinaGravarDTO ) );
+        disciplina.setId( disciplinaGravarDTO.getId() );
+        disciplina.setNome( disciplinaGravarDTO.getNome() );
+        disciplina.setDescricao( disciplinaGravarDTO.getDescricao() );
+        disciplina.setCargaHoraria( disciplinaGravarDTO.getCargaHoraria() );
+        disciplina.setAtiva( disciplinaGravarDTO.getAtiva() );
 
         return disciplina;
     }
@@ -129,14 +129,14 @@ public class DisciplinaMapperImpl implements DisciplinaMapper {
         return professor;
     }
 
-    protected Professor disciplinaDTOSalvarToProfessor(DisciplinaDTOSalvar disciplinaDTOSalvar) {
-        if ( disciplinaDTOSalvar == null ) {
+    protected Professor disciplinaGravarDTOToProfessor(DisciplinaGravarDTO disciplinaGravarDTO) {
+        if ( disciplinaGravarDTO == null ) {
             return null;
         }
 
         Professor professor = new Professor();
 
-        professor.setId( disciplinaDTOSalvar.getIdProfessor() );
+        professor.setId( disciplinaGravarDTO.getIdProfessor() );
 
         return professor;
     }

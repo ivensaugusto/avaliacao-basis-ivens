@@ -2,12 +2,12 @@ package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
-import br.com.basis.prova.dominio.dto.DisciplinaDTOSalvar;
+import br.com.basis.prova.dominio.dto.DisciplinaGravarDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import br.com.basis.prova.repositorio.DisciplinaRepositorio;
-import br.com.basis.prova.servico.mapper.DisciplinaDetalhadoMapper;
+import br.com.basis.prova.servico.mapper.DisciplinaDetalhadaMapper;
+import br.com.basis.prova.servico.mapper.DisciplinaGravarMapper;
 import br.com.basis.prova.servico.mapper.DisciplinaMapper;
-import br.com.basis.prova.servico.mapper.DisciplinaMapperSalvar;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,21 +19,21 @@ public class DisciplinaServico {
 
     private DisciplinaRepositorio disciplinaRepositorio;
     private DisciplinaMapper disciplinaMapper;
-    private DisciplinaDetalhadoMapper disciplinaDetalhadoMapper;
-    private DisciplinaMapperSalvar disciplinaMapperSalvar;
+    private DisciplinaDetalhadaMapper disciplinaDetalhadaMapper;
+    private DisciplinaGravarMapper disciplinaGravarMapper;
 
-    public DisciplinaServico(DisciplinaMapper disciplinaMapper, DisciplinaDetalhadoMapper disciplinaDetalhadoMapper,
-                             DisciplinaMapperSalvar disciplinaMapperSalvar, DisciplinaRepositorio disciplinaRepositorio) {
+    public DisciplinaServico(DisciplinaMapper disciplinaMapper, DisciplinaDetalhadaMapper disciplinaDetalhadaMapper,
+                             DisciplinaGravarMapper disciplinaGravarMapper, DisciplinaRepositorio disciplinaRepositorio) {
         this.disciplinaMapper = disciplinaMapper;
         this.disciplinaRepositorio = disciplinaRepositorio;
-        this.disciplinaDetalhadoMapper = disciplinaDetalhadoMapper;
-        this.disciplinaMapperSalvar = disciplinaMapperSalvar;
+        this.disciplinaDetalhadaMapper = disciplinaDetalhadaMapper;
+        this.disciplinaGravarMapper = disciplinaGravarMapper;
     }
 
-    public DisciplinaDTO salvar(DisciplinaDTOSalvar disciplinaDTOSalvar) {//TODO mensagem de erro disciplina já existe
-        Disciplina disciplina = this.disciplinaRepositorio.findByNome(disciplinaDTOSalvar.getNome());
+    public DisciplinaDTO salvar(DisciplinaGravarDTO disciplinaGravarDTO) {//TODO mensagem de erro disciplina já existe
+        Disciplina disciplina = this.disciplinaRepositorio.findByNome(disciplinaGravarDTO.getNome());
         if (disciplina == null) {
-            disciplina = disciplinaMapper.toEntity(disciplinaDTOSalvar);
+            disciplina = disciplinaMapper.toEntity(disciplinaGravarDTO);
             this.disciplinaRepositorio.save(disciplina);
         }
         return disciplinaMapper.toDto(disciplina);
@@ -59,14 +59,14 @@ public class DisciplinaServico {
 
     public List<DisciplinaDetalhadaDTO> detalhar() {
         List<Disciplina> l = this.disciplinaRepositorio.findAll();
-        List<DisciplinaDetalhadaDTO> disciplinas = disciplinaDetalhadoMapper.toDto(l);
+        List<DisciplinaDetalhadaDTO> disciplinas = disciplinaDetalhadaMapper.toDto(l);
         return disciplinas;
     }
 
-    public DisciplinaDTO editar(DisciplinaDTOSalvar disciplinaDTOSalvar) {
-        Disciplina disciplina = this.disciplinaRepositorio.findByNome(disciplinaDTOSalvar.getNome());
-        disciplinaDTOSalvar.setId(disciplina.getId());
-        disciplina = disciplinaMapperSalvar.toEntity(disciplinaDTOSalvar);
+    public DisciplinaDTO editar(DisciplinaGravarDTO disciplinaGravarDTO) {
+        Disciplina disciplina = this.disciplinaRepositorio.findByNome(disciplinaGravarDTO.getNome());
+        disciplinaGravarDTO.setId(disciplina.getId());
+        disciplina = disciplinaGravarMapper.toEntity(disciplinaGravarDTO);
         this.disciplinaRepositorio.save(disciplina);
         return disciplinaMapper.toDto(disciplina);
     }

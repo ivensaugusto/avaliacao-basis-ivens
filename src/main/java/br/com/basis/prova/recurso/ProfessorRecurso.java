@@ -2,7 +2,7 @@ package br.com.basis.prova.recurso;
 
 
 import br.com.basis.prova.dominio.dto.ProfessorDTO;
-import br.com.basis.prova.dominio.dto.ProfessorDTOSalvar;
+import br.com.basis.prova.dominio.dto.ProfessorGravarDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
 import br.com.basis.prova.servico.ProfessorServico;
 import org.springframework.http.ResponseEntity;
@@ -25,14 +25,14 @@ public class ProfessorRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<ProfessorDetalhadoDTO> salvar(@RequestBody ProfessorDTOSalvar professorDTOSalvar) throws URISyntaxException {
-        ProfessorDetalhadoDTO result = professorServico.salvar(professorDTOSalvar);
+    public ResponseEntity<ProfessorDetalhadoDTO> salvar(@RequestBody ProfessorGravarDTO professorGravarDTO) throws URISyntaxException {
+        ProfessorDetalhadoDTO result = professorServico.salvar(professorGravarDTO);
         return ResponseEntity.created(new URI(API_PROFESSORES + result.getId())).body(result);
     }
 
     @PutMapping
-    public ResponseEntity<ProfessorDTO> editar(@RequestBody ProfessorDTOSalvar professorDTOSalvar) throws URISyntaxException {
-        ProfessorDTO result = professorServico.editar(professorDTOSalvar);
+    public ResponseEntity<ProfessorDTO> editar(@RequestBody ProfessorGravarDTO professorGravarDTO) throws URISyntaxException {
+        ProfessorDTO result = professorServico.editar(professorGravarDTO);
         return ResponseEntity.ok(result);
     }
 
