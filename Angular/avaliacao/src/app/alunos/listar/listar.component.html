@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Alunos</h1>
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <label>Matricula </label>
+      <input pInputText type="text" name="matricula">
+    </div>
+    <div class="ui-g-12">
+      <button pButton label="Pesquisar" (click)="getPesquisar(matricula)"></button>
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-table [value]="getAlunos()" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="col-nome-header">Nome</th>
+            <th class="col-matricula-header">Matricula</th>
+            <th class="col-data-header">Idade</th>
+            <th class="col-disciplinas-header">Disciplinas</th>
+            <th class="col-acoes-header">Ação</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-alunos>
+          <tr>
+            <td class="col-nome">{{alunos.nome}}</td>
+            <td class="col-matricula">{{alunos.matricula}}</td>
+            <td class="col-data">{{alunos.idade}}</td>
+            <td class="col-disciplinas">
+              <div *ngIf="getTamanhoDisciplinas(alunos.nomeDisciplinas)" style="color: red">
+                Sem disciplinas atribuidas.
+              </div>
+              <!-- <div *ngFor="let disciplina of alunos.nomeDisciplinas">{{disciplina}}</div> -->
+              <div>{{alunos.nomeDisciplinas}}</div>
+            </td>
+            <td>
+              <button pButton type="submit" icon="pi pi-check" Class="ui-button-info"
+                pTooltip="Atribuir disciplina"></button>
+              <button pButton type="submit" icon="pi pi-times" Class="ui-button-danger"
+                pTooltip="Apagar alunos"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="ui-g-12">
+      <a pButton label="Novo aluno"></a>
+    </div>
+  </div>
+</div>
