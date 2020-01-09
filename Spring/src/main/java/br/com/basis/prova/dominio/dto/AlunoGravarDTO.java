@@ -19,5 +19,5 @@ public class AlunoGravarDTO {
     private String matricula;
     private LocalDate dataNascimento;
     private Integer idade;
-    private List<DisciplinaGravarDTO> disciplinas = new ArrayList<>();
+    private List<DisciplinaDTO> disciplinas = new ArrayList<>();
 }

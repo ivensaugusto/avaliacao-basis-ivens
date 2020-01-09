@@ -10,12 +10,18 @@ import { ButtonModule } from 'primeng/button';
 import { ListarComponent } from './alunos/listar/listar.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { PaginatorModule } from 'primeng/paginator';
+import { DisciplinasComponent } from './disciplinas/disciplinas.component';
+import { ProfessoresComponent } from './professores/professores.component';
+import { FormComponent } from './Alunos/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ListarComponent
+    ListarComponent,
+    DisciplinasComponent,
+    ProfessoresComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

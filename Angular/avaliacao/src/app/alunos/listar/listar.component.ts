@@ -124,6 +124,7 @@ export class ListarComponent implements OnInit {
   }
 
   getAlunos() {
+    /// chamar servico
     return this.alunos;
   }
 

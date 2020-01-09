@@ -40,15 +40,15 @@
             <td>
               <button pButton type="submit" icon="pi pi-check" Class="ui-button-info"
                 pTooltip="Atribuir disciplina"></button>
-              <button pButton type="submit" icon="pi pi-times" Class="ui-button-danger"
-                pTooltip="Apagar alunos"></button>
+              <button [disabled]="!getTamanhoDisciplinas(alunos.nomeDisciplinas)" pButton type="submit"
+                icon="pi pi-times" Class="ui-button-danger" pTooltip="Apagar alunos"></button>
             </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
     <div class="ui-g-12">
-      <a pButton label="Novo aluno"></a>
+      <button pButton label="Novo aluno"></button>
     </div>
   </div>
 </div>
