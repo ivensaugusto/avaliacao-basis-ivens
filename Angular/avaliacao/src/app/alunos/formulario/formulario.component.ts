@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AlunoService } from 'src/app/services/aluno.service';
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
-export class FormularioComponent implements OnInit {
+
+export class FormularioComponent {
 
   diciplinas = [
     {
@@ -65,9 +68,18 @@ export class FormularioComponent implements OnInit {
     { label: 'historia', value: 'historia' }
   ];
 
-  constructor() { }
+  constructor(
+    private alunoService: AlunoService
+  ) {
+    this.alunoService = new AlunoService();
+  }
 
-  ngOnInit() {
+  adicionar(nome: string) {
+    this.alunoService.adicionar(nome);
+  }
+
+  consultar() {
+    return this.alunoService.consultar();
   }
 
 }

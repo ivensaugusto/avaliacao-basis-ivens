@@ -9,20 +9,21 @@ export class AlunosGridComponent {
 
   @Input() alunos = [];
 
+  constructor() {
+  }
 
   getTamanhoDisciplinas(lista: Array<string>) {
     return lista.length === 0;
   }
 
-  getAlunos() {
-    /// chamar servico
-    return this.alunos;
+  getPesquisar(nome) {
+    return this.alunos.filter(aluno => {
+      return aluno.nome === nome;
+    });
   }
 
-  getPesquisar(matricula) {
-    return this.getAlunos().filter(alu2 => {
-      return alu2.matricula === matricula;
-    });
+  getAlunos() {
+    return this.alunos;
   }
 
 }
