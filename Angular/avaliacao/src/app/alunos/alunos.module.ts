@@ -12,7 +12,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from '../shared/shared.module';
-
+import { AlunoService } from '../services/aluno.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,14 @@ import { SharedModule } from '../shared/shared.module';
     DropdownModule,
     TableModule,
     PaginatorModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   exports: [
     ListarComponent,
     FormularioComponent,
     AlunosGridComponent
-  ]
+  ],
+  providers: [AlunoService]
 })
 export class AlunosModule { }

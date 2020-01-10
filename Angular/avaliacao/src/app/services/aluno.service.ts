@@ -1,3 +1,8 @@
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+// import 'rxjs/add/operator/toPromise';
+
+@Injectable()
 export class AlunoService {
 
   ultimoId = 1;
@@ -104,6 +109,11 @@ export class AlunoService {
     }
   ];
 
+  url = 'http://localhost:8080/api/alunos/detalhes';
+
+
+  constructor(private http: HttpClient) { }
+
   adicionar(nom: string) {
     const aluno = {
       nome: nom,
@@ -120,8 +130,7 @@ export class AlunoService {
   }
 
   consultar() {
-    return this.alunos;
+    return this.http.get<any>('http://localhost:8080/api/alunos/detalhes');
   }
-
 
 }

@@ -18,12 +18,20 @@ export class ListarComponent implements OnInit {
     private title: Title,
     private alunoService: AlunoService
     ) {
-    this.alunoService = new AlunoService();
+   // this.alunoService = new AlunoService();
   }
 
   ngOnInit(): void {
     this.title.setTitle('Pesquisa de alunos');
-    this.alunos = this.alunoService.consultar();
+    this.alunoService.consultar().subscribe( res => {
+      this.alunos = res;
+    });
+  }
+
+  getPesquisar(nome) {
+    return this.alunos.filter(aluno => {
+      return aluno.nome === nome;
+    });
   }
 
 }

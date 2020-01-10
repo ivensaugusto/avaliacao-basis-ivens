@@ -8,7 +8,6 @@ import { AlunosModule } from './alunos/alunos.module';
 import { DisciplinasModule } from './disciplinas/disciplinas.module';
 import { ProfessoresModule } from './professores/professores.module';
 import { CoreModule } from './core/core.module';
-import { AlunoService } from './services/aluno.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,7 @@ import { AlunoService } from './services/aluno.service';
     ProfessoresModule,
     CoreModule
   ],
-  providers: [AlunoService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 

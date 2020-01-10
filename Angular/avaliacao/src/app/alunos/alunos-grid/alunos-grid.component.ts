@@ -16,12 +16,6 @@ export class AlunosGridComponent {
     return lista.length === 0;
   }
 
-  getPesquisar(nome) {
-    return this.alunos.filter(aluno => {
-      return aluno.nome === nome;
-    });
-  }
-
   getAlunos() {
     return this.alunos;
   }

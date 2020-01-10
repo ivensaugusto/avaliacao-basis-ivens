@@ -71,7 +71,7 @@ export class FormularioComponent {
   constructor(
     private alunoService: AlunoService
   ) {
-    this.alunoService = new AlunoService();
+    // this.alunoService = new AlunoService();
   }
 
   adicionar(nome: string) {
