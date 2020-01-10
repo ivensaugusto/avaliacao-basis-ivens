@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
 })
+
 export class ListarComponent implements OnInit {
   // localhost:8080/api/alunos/detalhes -> fazer metodo buscar alunos...
 
@@ -117,21 +118,6 @@ export class ListarComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Pesquisa de alunos');
-  }
-
-  getTamanhoDisciplinas(lista: Array<string>) {
-    return lista.length === 0;
-  }
-
-  getAlunos() {
-    /// chamar servico
-    return this.alunos;
-  }
-
-  getPesquisar(matricula) {
-    return this.getAlunos().filter(alu2 => {
-      return alu2.matricula === matricula;
-    });
   }
 
 }

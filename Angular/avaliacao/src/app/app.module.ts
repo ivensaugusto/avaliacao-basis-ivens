@@ -1,37 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { ListarComponent } from './alunos/listar/listar.component';
-import { TooltipModule } from 'primeng/tooltip';
-import { PaginatorModule } from 'primeng/paginator';
-import { DisciplinasComponent } from './disciplinas/disciplinas.component';
-import { ProfessoresComponent } from './professores/professores.component';
-import { FormComponent } from './Alunos/form/form.component';
+import { AlunosModule } from './alunos/alunos.module';
+import { DisciplinasModule } from './disciplinas/disciplinas.module';
+import { ProfessoresModule } from './professores/professores.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    ListarComponent,
-    DisciplinasComponent,
-    ProfessoresComponent,
-    FormComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    TableModule,
-    ButtonModule,
-    TooltipModule,
-    PaginatorModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AlunosModule,
+    DisciplinasModule,
+    ProfessoresModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
