@@ -74,7 +74,7 @@ export class FormularioComponent {
     // this.alunoService = new AlunoService();
   }
 
-  adicionar(nome: string) {
+  salvarAluno(nome: string) {
     this.alunoService.adicionar(nome);
   }
 
