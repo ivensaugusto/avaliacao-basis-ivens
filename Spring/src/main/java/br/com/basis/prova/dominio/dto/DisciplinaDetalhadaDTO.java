@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DisciplinaDetalhadaDTO {
-    @JsonIgnore
+
     private Integer id;
     private String nome;
     private Integer cargaHoraria;

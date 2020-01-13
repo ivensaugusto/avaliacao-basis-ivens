@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-10T10:20:03-0300",
+    date = "2020-01-13T14:39:27-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -68,14 +68,14 @@ public class AlunoDetalhadoMapperImpl implements AlunoDetalhadoMapper {
     }
 
     @Override
-    public List<AlunoDetalhadoDTO> toDto(List<Aluno> aluno) {
-        if ( aluno == null ) {
+    public List<AlunoDetalhadoDTO> toDto(List<Aluno> entityList) {
+        if ( entityList == null ) {
             return null;
         }
 
-        List<AlunoDetalhadoDTO> list = new ArrayList<AlunoDetalhadoDTO>( aluno.size() );
-        for ( Aluno aluno1 : aluno ) {
-            list.add( toDto( aluno1 ) );
+        List<AlunoDetalhadoDTO> list = new ArrayList<AlunoDetalhadoDTO>( entityList.size() );
+        for ( Aluno aluno : entityList ) {
+            list.add( toDto( aluno ) );
         }
 
         return list;

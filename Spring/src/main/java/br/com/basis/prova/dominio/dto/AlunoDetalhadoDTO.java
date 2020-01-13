@@ -1,6 +1,5 @@
 package br.com.basis.prova.dominio.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,16 +13,12 @@ import java.util.List;
 @Setter
 public class AlunoDetalhadoDTO {
 
-    @JsonIgnore
     private Integer id;
     private String nome;
-    @JsonIgnore
     private String cpf;
     private String matricula;
-    @JsonIgnore
     private LocalDate dataNascimento;
     private Integer idade;
-    @JsonIgnore
     private List<DisciplinaDTO> disciplinas = new ArrayList<>();
     private List<String> nomeDisciplinas = new ArrayList<>();
 

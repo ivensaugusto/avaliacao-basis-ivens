@@ -1,14 +1,16 @@
 package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Aluno;
+import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.dto.AlunoDTO;
-import br.com.basis.prova.dominio.dto.AlunoGravarDTO;
 import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.repositorio.AlunoRepositorio;
+import br.com.basis.prova.repositorio.DisciplinaRepositorio;
+import br.com.basis.prova.servico.exception.RegraNegocioException;
 import br.com.basis.prova.servico.mapper.AlunoDetalhadoMapper;
-import br.com.basis.prova.servico.mapper.AlunoMapper;
 import br.com.basis.prova.servico.mapper.AlunoGravarMapper;
+import br.com.basis.prova.servico.mapper.AlunoMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,75 +25,82 @@ public class AlunoServico {
     private AlunoMapper alunoMapper;
     private AlunoDetalhadoMapper alunoDetalhadoMapper;
     private AlunoRepositorio alunoRepositorio;
-    private AlunoGravarMapper alunoGravarMapper;
-    //private AlunoDetalhadoDTO alunoDetalhadoDTO;
+    private DisciplinaRepositorio disciplinaRepositorio;
 
     public AlunoServico(AlunoMapper alunoMapper, AlunoDetalhadoMapper alunoDetalhadoMapper,
-                        AlunoGravarMapper alunoGravarMapper, AlunoRepositorio alunoRepositorio) {
+                        AlunoRepositorio alunoRepositorio, DisciplinaRepositorio disciplinaRepositorio) {
         this.alunoMapper = alunoMapper;
         this.alunoDetalhadoMapper = alunoDetalhadoMapper;
         this.alunoRepositorio = alunoRepositorio;
-        this.alunoGravarMapper = alunoGravarMapper;
-
+        this.disciplinaRepositorio = disciplinaRepositorio;
     }
 
-    public AlunoDTO salvar(AlunoGravarDTO alunoGravarDTO) {//TODO mensagem de erro matricula já existe
-        Aluno aluno = this.alunoRepositorio.findByMatricula(alunoGravarDTO.getMatricula());
-        if (aluno == null) {
-            aluno = alunoGravarMapper.toEntity(alunoGravarDTO);
-            this.alunoRepositorio.save(aluno);
+    public AlunoDTO salvar(AlunoDTO alunoDTO) {
+        Aluno aluno = alunoMapper.toEntity(alunoDTO);
+
+        if(verificarCPF(aluno)){
+            throw new RegraNegocioException("CPF já existe");
         }
+
+        if(verificarMatricula(aluno)){
+            throw new RegraNegocioException("Matrícula já existe");
+        }
+
+        alunoRepositorio.save(aluno);
         return alunoMapper.toDto(aluno);
     }
 
+    private boolean verificarCPF(Aluno aluno) {
+        Aluno alunoCpf = alunoRepositorio.findByCpf(aluno.getCpf());
+        return !(alunoCpf == null || alunoCpf.getId().equals(aluno.getId()));
+    }
+
+    private boolean verificarMatricula(Aluno aluno) {
+        Aluno alunoMatricula = alunoRepositorio.findByMatricula(aluno.getMatricula());
+        return !(alunoMatricula == null || alunoMatricula.getId().equals(aluno.getId()));
+    }
+
     public List<AlunoDTO> consultar() {
-        List<AlunoDTO> alunos = alunoMapper.toDto(this.alunoRepositorio.findAll());
-        for (AlunoDTO aluno : alunos) {
-            aluno.setIdade(LocalDate.now().getYear() - aluno.getDataNascimento().getYear());
-        }
+        List<AlunoDTO> alunos = alunoMapper.toDto(alunoRepositorio.findAll());
+        preencherIdades(alunos);
         return alunos;
+    }
+
+    private void preencherIdades(List<AlunoDTO> alunos) {
+        alunos.forEach(alunoDTO -> {
+            alunoDTO.setIdade(LocalDate.now().getYear() - alunoDTO.getDataNascimento().getYear());
+        });
     }
 
     public List<AlunoDetalhadoDTO> detalhar() {
         List<AlunoDetalhadoDTO> alunos = alunoDetalhadoMapper.toDto(this.alunoRepositorio.findAll());
-        for (AlunoDetalhadoDTO aluno : alunos) {
-            aluno.setIdade(LocalDate.now().getYear() - aluno.getDataNascimento().getYear());
 
+        alunos.forEach(alunoDetalhadoDTO -> {
             List<String> listNomeDisciplinasDTO = new ArrayList<String>();
-            List<DisciplinaDTO> disciplinasDTO = aluno.getDisciplinas();
+            alunoDetalhadoDTO.setIdade(LocalDate.now().getYear() - alunoDetalhadoDTO.getDataNascimento().getYear());
+            List<DisciplinaDTO> disciplinasDTO = alunoDetalhadoDTO.getDisciplinas();
             for (DisciplinaDTO disciplinaDTO : disciplinasDTO) {
-                if (disciplinaDTO.getAtiva() == 1) {// 1 igual a ativo true.
+                if (disciplinaDTO.getAtiva() == 1) {
                     listNomeDisciplinasDTO.add(disciplinaDTO.getNome());
                 }
             }
-            aluno.setNomeDisciplinas(listNomeDisciplinasDTO);
-
-        }
+            alunoDetalhadoDTO.setNomeDisciplinas(listNomeDisciplinasDTO);
+        });
         return alunos;
     }
 
-    public AlunoDTO editar(AlunoGravarDTO alunoGravarDTO) {
-        Aluno aluno = this.alunoRepositorio.findByMatricula(alunoGravarDTO.getMatricula());
-        alunoGravarDTO.setId(aluno.getId());
-        aluno = alunoGravarMapper.toEntity(alunoGravarDTO);
-        this.alunoRepositorio.save(aluno);
-        return alunoMapper.toDto(aluno);
-    }
-
     public void excluir(Integer id) {
-        try {
-            this.alunoRepositorio.deleteById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            //TODO mensagem de erro de aluno com disciplinas.
+
+        Aluno aluno = alunoRepositorio.findById(id).orElseThrow(() ->
+            new RegraNegocioException("Aluno não encontrado"));
+
+        List<Disciplina> disciplinas = disciplinaRepositorio.findAllByAtivaAndAlunos(1, aluno);
+
+        if(!disciplinas.isEmpty()){
+            throw new RegraNegocioException("Aluno matriculado em disciplinas");
         }
 
-
+        alunoRepositorio.delete(aluno);
     }
-
-    public void excluirPorMatricula(String matricula) {
-        this.alunoRepositorio.deleteByMatricula(matricula);
-    }
-
 
 }

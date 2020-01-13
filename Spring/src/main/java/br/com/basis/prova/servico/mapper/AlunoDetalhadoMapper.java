@@ -8,6 +8,5 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {})
 public interface AlunoDetalhadoMapper extends EntityMapper<AlunoDetalhadoDTO, Aluno> {
-    List<AlunoDetalhadoDTO> toDto(List<Aluno> aluno);
 }
 

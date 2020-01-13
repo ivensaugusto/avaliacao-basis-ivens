@@ -37,7 +37,7 @@ public class Aluno {
     private LocalDate dataNascimento;
 
     @JsonManagedReference
-    @ManyToMany(cascade = CascadeType.ALL/*, fetch = FetchType.LAZY*/)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "ALUNO_DISCIPLINA",
             joinColumns = @JoinColumn(name = "ID_ALUNO", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ID_DISCIPLINA", referencedColumnName = "ID"))

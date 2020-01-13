@@ -7,6 +7,7 @@ import br.com.basis.prova.servico.AlunoServico;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -24,26 +25,20 @@ public class AlunoRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<AlunoDTO> salvar(@RequestBody AlunoGravarDTO alunoGravarDTO) throws URISyntaxException {
-        AlunoDTO result = alunoServico.salvar(alunoGravarDTO);
+    public ResponseEntity<AlunoDTO> salvar(@Valid @RequestBody AlunoDTO alunoDTO) throws URISyntaxException {
+        AlunoDTO result = alunoServico.salvar(alunoDTO);
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }
 
     @PutMapping
-    public ResponseEntity<AlunoDTO> editar(@RequestBody AlunoGravarDTO alunoGravarDTO) throws URISyntaxException {
-        AlunoDTO result = alunoServico.editar(alunoGravarDTO);
+    public ResponseEntity<AlunoDTO> editar(@Valid @RequestBody AlunoDTO alunoDTO) throws URISyntaxException {
+        AlunoDTO result = alunoServico.salvar(alunoDTO);
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Integer id) {
         alunoServico.excluir(id);
-        return ResponseEntity.status(200).build();
-    }
-
-    @DeleteMapping("/deletePorMatricula/{matricula}")
-    public ResponseEntity<Void> excluirPorMatricula(@PathVariable("matricula") String matricula) {
-        alunoServico.excluirPorMatricula(matricula);
         return ResponseEntity.status(200).build();
     }
 

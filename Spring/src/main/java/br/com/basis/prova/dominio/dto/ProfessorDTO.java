@@ -14,14 +14,11 @@ import java.util.List;
 @Setter
 public class ProfessorDTO {
 
-    @JsonIgnore
     private Integer id;
     private String nome;
     private String matricula;
     private String area;
-    @JsonIgnore
     private LocalDate dataNascimento;
     private Integer idade;
-    @JsonIgnore
     private List<DisciplinaDTO> disciplinas = new ArrayList<DisciplinaDTO>();
 }
