@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/alunos")
 public class AlunoRecurso {
@@ -45,6 +46,7 @@ public class AlunoRecurso {
     public ResponseEntity<List<AlunoDTO>> consultar() {
         return ResponseEntity.ok(alunoServico.consultar());
     }
+
 
     @GetMapping("/detalhes")
     public ResponseEntity<List<AlunoDetalhadoDTO>> detalhar() {

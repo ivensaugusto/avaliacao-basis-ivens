@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Injectable()
 export class DisciplinaService {
@@ -58,11 +60,17 @@ export class DisciplinaService {
     }
   ];
 
+  url = 'http://localhost:8080/api/disciplinas';
+
+
+  constructor(private http: HttpClient) { }
+
+
   adicionar(nom: string) {
     const disciplina = {
-    nome: nom,
-    cargaHoraria: 60,
-    nomeProfessor: 'ze'
+      nome: nom,
+      cargaHoraria: 60,
+      nomeProfessor: 'ze'
     };
 
     this.disciplinas.push(disciplina);
@@ -70,8 +78,7 @@ export class DisciplinaService {
   }
 
   consultar() {
-    return this.disciplinas;
+    return this.http.get<any>('http://localhost:8080/api/disciplinas');
   }
-
 
 }

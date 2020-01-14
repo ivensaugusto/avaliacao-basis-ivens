@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DisciplinasComponent } from './disciplinas.component';
 import { SharedModule } from '../shared/shared.module';
 
-
+import { DisciplinasComponent } from './disciplinas.component';
+import { DisciplinaService } from './../services/disciplina.service';
 
 @NgModule({
   declarations: [
@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule
-  ]
+  ],
+  providers: [DisciplinaService]
 })
 export class DisciplinasModule { }

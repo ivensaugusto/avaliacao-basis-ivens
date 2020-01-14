@@ -1,17 +1,24 @@
 <div class="container">
-  <form>
+  <form #ngForm="ngForm" (ngSubmit)="salvarAluno(ngForm)">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1> Novo Aluno</h1>
       </div>
 
-      <div class="ui-g-6 ui-fluid">
+      <div class="ui-g-9 ui-fluid">
         <label class="ui-g-12">Nome</label>
         <input class="ui-g-12" pInputText type="text" name="nome" ngModel #nome="ngModel" required minlength="5">
         <app-message class="ui-g-11" [control]="nome" error="required" text="Informe um nome completo."></app-message>
         <app-message class="ui-g-11" [control]="nome" error="minlength"
           text="Minimo de {{ nome.errors?.minlength?.requiredLength }} caracteres."></app-message>
       </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label class="ui-g-12">CPF</label>
+        <input class="ui-g-6" pInputText type="text" ngModel name="CPF" #CPF="ngModel" required>
+        <app-message class="ui-g-12" [control]="CPF" error="required" text="Informe um CPF."></app-message>
+      </div>
+
       <div class="ui-g-6 ui-fluid">
         <label class="ui-g-12">Matricula</label>
         <input class="ui-g-6" pInputText type="text" ngModel name="matricula" #matricula="ngModel" required>
@@ -20,22 +27,24 @@
 
       <div class="ui-g-6 ui-fluid">
         <label class="ui-g-12">Diciplinas</label>
-        <p-dropdown class="ui-g-6" [options]="nomeDisciplinas" placeholder="Selecione" [filter]="true"
-          name="disciplinas" ngModel #disciplinas="ngModel" required>
-        </p-dropdown>
-        <app-message class="ui-g-12" [control]="disciplinas" error="required" text="Informe uma disciplina."></app-message>
+        <p-multiSelect (onChange)="listarDisciplinasSelecionadas($event)" class="ui-g-6"
+          [options]="nomeDisciplinas" placeholder="Selecione" [filter]="true" name="disciplinas" ngModel
+          #disciplinas="ngModel" required>
+        </p-multiSelect>
+        <app-message class="ui-g-12" [control]="disciplinas" error="required" text="Informe uma disciplina.">
+        </app-message>
       </div>
 
       <div class="ui-g-6 ui-fluid">
         <label class="ui-g-12">Data de nascimento</label>
         <p-calendar class="ui-g-6" dateFormat="dd/mm/yy" [showIcon]="true" name="dataNascimento" ngModel
           #dataNascimento="ngModel" required></p-calendar>
-          <app-message class="ui-g-12" [control]="dataNascimento" error="required" text="Informe uma data de nascimento."></app-message>
+        <app-message class="ui-g-12" [control]="dataNascimento" error="required" text="Informe uma data de nascimento.">
+        </app-message>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" (click)="salvarAluno()"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info"></button>
+        <button pButton type="submit" label="Salvar"></button>
         <a href="javascript:;">Voltar para pesquisa</a>
       </div>
 

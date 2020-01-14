@@ -1,6 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-// import 'rxjs/add/operator/toPromise';
+import { Aluno } from './../alunos/aluno.model';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AlunoService {
@@ -109,28 +109,20 @@ export class AlunoService {
     }
   ];
 
-  url = 'http://localhost:8080/api/alunos/detalhes';
-
+  url = 'http://localhost:8080/api/alunos';
 
   constructor(private http: HttpClient) { }
 
-  adicionar(nom: string) {
-    const aluno = {
-      nome: nom,
-      matricula: '4',
-      idade: 23,
-      nomeDisciplinas: [
-        'historia',
-        'geografia'
-      ]
-    };
-
-    this.alunos.push(aluno);
-    console.log(JSON.stringify(this.alunos));
+  adicionar(aluno: Aluno) {
+    return this.http.post<any>('http://localhost:8080/api/alunos', aluno);
   }
 
   consultar() {
     return this.http.get<any>('http://localhost:8080/api/alunos/detalhes');
+  }
+
+  deletar(aluno: Aluno) {
+    return this.http.delete<any>('http://localhost:8080/api/alunos/' + aluno.id);
   }
 
 }

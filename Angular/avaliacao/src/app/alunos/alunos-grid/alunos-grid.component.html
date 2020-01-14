@@ -18,14 +18,17 @@
         <div *ngIf="getTamanhoDisciplinas(alunos.nomeDisciplinas)" style="color: red">
           Sem disciplinas atribuidas.
         </div>
-        <!-- <div *ngFor="let disciplina of alunos.nomeDisciplinas">{{disciplina}}</div> -->
         <div>{{alunos.nomeDisciplinas}}</div>
       </td>
       <td>
-        <button pButton type="submit" icon="pi pi-check" Class="ui-button-info"
-          pTooltip="Atribuir disciplina"></button>
-        <button [disabled]="!getTamanhoDisciplinas(alunos.nomeDisciplinas)" pButton type="submit"
-          icon="pi pi-times" Class="ui-button-danger" pTooltip="Apagar alunos"></button>
+        <div pTooltip="Atribuir disciplina" style="display:inline-block;">
+          <button pButton icon="pi pi-check" Class="ui-button-info" (click)="alterar(alunos)"></button>
+        </div>
+        <div pTooltip="Apagar alunos" style="display:inline-block;">
+          <button pButton icon="pi pi-times" Class="ui-button-danger"
+            [disabled]="!getTamanhoDisciplinas(alunos.nomeDisciplinas)" (click)="deletar(alunos)"></button>
+        </div>
+
       </td>
     </tr>
   </ng-template>

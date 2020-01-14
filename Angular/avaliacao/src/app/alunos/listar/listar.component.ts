@@ -17,21 +17,21 @@ export class ListarComponent implements OnInit {
   constructor(
     private title: Title,
     private alunoService: AlunoService
-    ) {
-   // this.alunoService = new AlunoService();
-  }
+  ) { }
 
   ngOnInit(): void {
     this.title.setTitle('Pesquisa de alunos');
-    this.alunoService.consultar().subscribe( res => {
+    this.alunoService.consultar().subscribe(res => {
       this.alunos = res;
     });
   }
 
-  getPesquisar(nome) {
-    return this.alunos.filter(aluno => {
-      return aluno.nome === nome;
-    });
+  getPesquisar(matricula: string) {
+    this.alunos = this.alunos.filter((aluno: { matricula: any; }) =>
+      aluno.matricula === matricula
+    );
+    console.log(this.alunos);
+
   }
 
 }
