@@ -1,12 +1,12 @@
 package br.com.basis.prova.recurso;
 
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
-import br.com.basis.prova.dominio.dto.DisciplinaGravarDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import br.com.basis.prova.servico.DisciplinaServico;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -24,26 +24,20 @@ public class DisciplinaRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<DisciplinaDTO> salvar(@RequestBody DisciplinaGravarDTO disciplinaSalvar) throws URISyntaxException {
-        DisciplinaDTO result = disciplinaServico.salvar(disciplinaSalvar);
+    public ResponseEntity<DisciplinaDTO> salvar(@Valid @RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
+        DisciplinaDTO result = disciplinaServico.salvar(disciplinaDTO);
         return ResponseEntity.created(new URI(API_DISCIPLINAS + result.getId())).body(result);
     }
 
     @PutMapping
-    public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaGravarDTO disciplinaSalvar) throws URISyntaxException {
-        DisciplinaDTO result = disciplinaServico.editar(disciplinaSalvar);
+    public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
+        DisciplinaDTO result = disciplinaServico.salvar(disciplinaDTO);
         return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Integer id) {
         disciplinaServico.excluir(id);
-        return ResponseEntity.status(200).build();
-    }
-
-    @DeleteMapping("/deletePorNome/{nome}")
-    public ResponseEntity<Void> excluirPorNome(@PathVariable("nome") String nome) {
-        disciplinaServico.excluirPorNome(nome);
         return ResponseEntity.status(200).build();
     }
 

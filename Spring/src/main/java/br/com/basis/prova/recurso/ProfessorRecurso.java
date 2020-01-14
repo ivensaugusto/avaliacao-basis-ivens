@@ -2,7 +2,6 @@ package br.com.basis.prova.recurso;
 
 
 import br.com.basis.prova.dominio.dto.ProfessorDTO;
-import br.com.basis.prova.dominio.dto.ProfessorGravarDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
 import br.com.basis.prova.servico.ProfessorServico;
 import org.springframework.http.ResponseEntity;
@@ -25,14 +24,14 @@ public class ProfessorRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<ProfessorDetalhadoDTO> salvar(@RequestBody ProfessorGravarDTO professorGravarDTO) throws URISyntaxException {
-        ProfessorDetalhadoDTO result = professorServico.salvar(professorGravarDTO);
+    public ResponseEntity<ProfessorDTO> salvar(@RequestBody ProfessorDTO professorDTO) throws URISyntaxException {
+        ProfessorDTO result = professorServico.salvar(professorDTO);
         return ResponseEntity.created(new URI(API_PROFESSORES + result.getId())).body(result);
     }
 
     @PutMapping
-    public ResponseEntity<ProfessorDTO> editar(@RequestBody ProfessorGravarDTO professorGravarDTO) throws URISyntaxException {
-        ProfessorDTO result = professorServico.editar(professorGravarDTO);
+    public ResponseEntity<ProfessorDTO> editar(@RequestBody ProfessorDTO professorDTO) throws URISyntaxException {
+        ProfessorDTO result = professorServico.salvar(professorDTO);
         return ResponseEntity.ok(result);
     }
 
@@ -42,7 +41,7 @@ public class ProfessorRecurso {
         return ResponseEntity.status(200).build();
     }
 
-    @DeleteMapping("/deletePorMatricula/{matricula}")
+    @DeleteMapping("/matricula/{matricula}")
     public ResponseEntity<Void> excluirPorMatricula(@PathVariable("matricula") String matricula) {
         professorServico.excluirPorMatricula(matricula);
         return ResponseEntity.status(200).build();

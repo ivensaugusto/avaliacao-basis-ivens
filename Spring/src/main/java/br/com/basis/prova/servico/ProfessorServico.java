@@ -1,14 +1,13 @@
 package br.com.basis.prova.servico;
 
+import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
-import br.com.basis.prova.dominio.dto.DisciplinaDTO;
-import br.com.basis.prova.dominio.dto.ProfessorDTO;
-import br.com.basis.prova.dominio.dto.ProfessorGravarDTO;
-import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
+import br.com.basis.prova.dominio.dto.*;
+import br.com.basis.prova.repositorio.DisciplinaRepositorio;
 import br.com.basis.prova.repositorio.ProfessorRepositorio;
+import br.com.basis.prova.servico.exception.RegraNegocioException;
 import br.com.basis.prova.servico.mapper.ProfessorDetalhadoMapper;
-import br.com.basis.prova.servico.mapper.ProfessorGravarMapper;
 import br.com.basis.prova.servico.mapper.ProfessorMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,67 +23,89 @@ public class ProfessorServico {
     private ProfessorRepositorio professorRepositorio;
     private ProfessorMapper professorMapper;
     private ProfessorDetalhadoMapper professorDetalhadoMapper;
-    private ProfessorGravarMapper professorGravarMapper;
+    private DisciplinaRepositorio disciplinaRepositorio;
 
     public ProfessorServico(ProfessorMapper professorMapper, ProfessorDetalhadoMapper professorDetalhadoMapper,
-                            ProfessorGravarMapper professorGravarMapper, ProfessorRepositorio professorRepositorio) {
+                            ProfessorRepositorio professorRepositorio, DisciplinaRepositorio disciplinaRepositorio) {
+
         this.professorMapper = professorMapper;
         this.professorRepositorio = professorRepositorio;
         this.professorDetalhadoMapper = professorDetalhadoMapper;
-        this.professorGravarMapper = professorGravarMapper;
+        this.disciplinaRepositorio = disciplinaRepositorio;
     }
 
-    public ProfessorDetalhadoDTO salvar(ProfessorGravarDTO professorGravarDTO) {
-        Professor professor = this.professorRepositorio.findByNome(professorGravarDTO.getNome());
-        if (professor == null) {
-            professor = professorGravarMapper.toEntity(professorGravarDTO);
-            this.professorRepositorio.save(professor);
+    public ProfessorDTO salvar(ProfessorDTO professorDTO) {
+        Professor professor = professorMapper.toEntity(professorDTO);
+
+        if (verificarNome(professor)) {
+            throw new RegraNegocioException("Professor já existe");
         }
-        return professorDetalhadoMapper.toDto(professor);
-    }
 
-    public void excluir(Integer id) {
-        try {
-            this.professorRepositorio.deleteById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            //TODO mensagem de erro de professor com disciplina.
+        if (verificarMatricula(professor)) {
+            throw new RegraNegocioException("Matrícula já existe");
         }
+
+        professorRepositorio.save(professor);
+        return professorMapper.toDto(professor);
     }
 
-    public void excluirPorMatricula(String matricula) { //TODO mensagem de erro de professor com disciplina.
-        this.professorRepositorio.deleteByMatricula(matricula);
+    private boolean verificarNome(Professor professor) {
+        Professor professorNome = professorRepositorio.findByNome(professor.getNome());
+        return !(professorNome == null || professorNome.getId().equals(professor.getId()));
+    }
+
+    private boolean verificarMatricula(Professor professor) {
+        Professor professorMatricula = professorRepositorio.findByMatricula(professor.getMatricula());
+        return !(professorMatricula == null || professorMatricula.getId().equals(professor.getId()));
     }
 
     public List<ProfessorDTO> consultar() {
         List<ProfessorDTO> professores = professorMapper.toDto(this.professorRepositorio.findAll());
-        for (ProfessorDTO professor : professores) {
-            professor.setIdade(LocalDate.now().getYear() - professor.getDataNascimento().getYear());
-        }
+        preencherIdades(professores);
         return professores;
     }
 
-    public List<ProfessorDetalhadoDTO> detalhar() {
-        List<ProfessorDetalhadoDTO> professoresDetalhadoDTO = professorDetalhadoMapper.toDto(this.professorRepositorio.findAll());
-        for (ProfessorDetalhadoDTO professorDetalhadoDTO : professoresDetalhadoDTO) {
-            List<String> list = new ArrayList<String>();
-            List<DisciplinaDTO> disciplinasDTO = professorDetalhadoDTO.getDisciplinas();
-            for (DisciplinaDTO disciplinaDTO : disciplinasDTO) {
-                if (disciplinaDTO.getAtiva() == 1) {// 1 igual a ativo true.
-                    list.add(disciplinaDTO.getNome());
-                }
-                professorDetalhadoDTO.setNomeDisciplina(list);
-            }
-        }
-        return professoresDetalhadoDTO;
+    private void preencherIdades(List<ProfessorDTO> professor) {
+        professor.forEach(professorDTO -> {
+            professorDTO.setIdade(LocalDate.now().getYear() - professorDTO.getDataNascimento().getYear());
+        });
     }
 
-    public ProfessorDTO editar(ProfessorGravarDTO professorGravarDTO) {
-        Professor professor = this.professorRepositorio.findByMatricula(professorGravarDTO.getMatricula());
-        professorGravarDTO.setId(professor.getId());
-        professor = professorGravarMapper.toEntity(professorGravarDTO);
-        this.professorRepositorio.save(professor);
-        return professorMapper.toDto(professor);
+    public List<ProfessorDetalhadoDTO> detalhar() {
+        List<ProfessorDetalhadoDTO> professores = professorDetalhadoMapper.toDto(this.professorRepositorio.findAll());
+
+        professores.forEach(professorDetalhadoDTO -> {
+            List<String> listNomeDisciplinasDTO = new ArrayList<String>();
+            List<DisciplinaDTO> disciplinasDTO = professorDetalhadoDTO.getDisciplinas();
+            for (DisciplinaDTO disciplinaDTO : disciplinasDTO) {
+                if (disciplinaDTO.getAtiva() == 1) {
+                    listNomeDisciplinasDTO.add(disciplinaDTO.getNome());
+                }
+            }
+            professorDetalhadoDTO.setNomeDisciplinas(listNomeDisciplinasDTO);
+        });
+        return professores;
+    }
+
+    public void excluir(Integer id) {
+
+        Professor professor = professorRepositorio.findById(id).orElseThrow(() ->
+                new RegraNegocioException("Professor não encontrado"));
+
+        List<Disciplina> disciplinas = disciplinaRepositorio.findAllByAtivaAndProfessor(1, professor);
+
+        if (!disciplinas.isEmpty()) {
+            throw new RegraNegocioException("professor responsável por disciplinas");
+        }
+        professorRepositorio.delete(professor);
+    }
+
+    public void excluirPorMatricula(String matricula) {
+        Professor professor = professorRepositorio.findByMatricula(matricula);
+        if (professor == null) {
+            throw new RegraNegocioException("Professor não existe");
+        }
+        excluir(professor.getId());
     }
 }
 

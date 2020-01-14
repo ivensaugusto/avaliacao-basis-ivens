@@ -16,8 +16,7 @@ public class ProfessorDetalhadoDTO {
     private Integer id;
     private String nome;
     private String matricula;
-    @JsonIgnore
     private List<DisciplinaDTO> disciplinas = new ArrayList<DisciplinaDTO>();
-    private List<String> nomeDisciplina;
+    private List<String> nomeDisciplinas;
 
 }

@@ -1,5 +1,6 @@
 package br.com.basis.prova.dominio;
 
+import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +38,7 @@ public class Aluno {
     private LocalDate dataNascimento;
 
     @JsonManagedReference
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(/*cascade = CascadeType.ALL, */fetch = FetchType.LAZY)
     @JoinTable(name = "ALUNO_DISCIPLINA",
             joinColumns = @JoinColumn(name = "ID_ALUNO", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ID_DISCIPLINA", referencedColumnName = "ID"))

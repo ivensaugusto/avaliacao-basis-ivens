@@ -11,11 +11,43 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-13T14:39:27-0300",
+    date = "2020-01-14T08:16:34-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
 public class ProfessorDetalhadoMapperImpl implements ProfessorDetalhadoMapper {
+
+    @Override
+    public Professor toEntity(ProfessorDetalhadoDTO dto) {
+        if ( dto == null ) {
+            return null;
+        }
+
+        Professor professor = new Professor();
+
+        professor.setId( dto.getId() );
+        professor.setNome( dto.getNome() );
+        professor.setMatricula( dto.getMatricula() );
+        professor.setDisciplinas( disciplinaDTOListToDisciplinaList( dto.getDisciplinas() ) );
+
+        return professor;
+    }
+
+    @Override
+    public ProfessorDetalhadoDTO toDto(Professor entity) {
+        if ( entity == null ) {
+            return null;
+        }
+
+        ProfessorDetalhadoDTO professorDetalhadoDTO = new ProfessorDetalhadoDTO();
+
+        professorDetalhadoDTO.setId( entity.getId() );
+        professorDetalhadoDTO.setNome( entity.getNome() );
+        professorDetalhadoDTO.setMatricula( entity.getMatricula() );
+        professorDetalhadoDTO.setDisciplinas( disciplinaListToDisciplinaDTOList( entity.getDisciplinas() ) );
+
+        return professorDetalhadoDTO;
+    }
 
     @Override
     public List<Professor> toEntity(List<ProfessorDetalhadoDTO> dtoList) {
@@ -45,36 +77,33 @@ public class ProfessorDetalhadoMapperImpl implements ProfessorDetalhadoMapper {
         return list;
     }
 
-    @Override
-    public ProfessorDetalhadoDTO toDto(Professor professor) {
-        if ( professor == null ) {
+    protected Disciplina disciplinaDTOToDisciplina(DisciplinaDTO disciplinaDTO) {
+        if ( disciplinaDTO == null ) {
             return null;
         }
 
-        ProfessorDetalhadoDTO professorDetalhadoDTO = new ProfessorDetalhadoDTO();
+        Disciplina disciplina = new Disciplina();
 
-        professorDetalhadoDTO.setId( professor.getId() );
-        professorDetalhadoDTO.setNome( professor.getNome() );
-        professorDetalhadoDTO.setMatricula( professor.getMatricula() );
-        professorDetalhadoDTO.setDisciplinas( disciplinaListToDisciplinaDTOList( professor.getDisciplinas() ) );
+        disciplina.setId( disciplinaDTO.getId() );
+        disciplina.setNome( disciplinaDTO.getNome() );
+        disciplina.setDescricao( disciplinaDTO.getDescricao() );
+        disciplina.setCargaHoraria( disciplinaDTO.getCargaHoraria() );
+        disciplina.setAtiva( disciplinaDTO.getAtiva() );
 
-        return professorDetalhadoDTO;
+        return disciplina;
     }
 
-    @Override
-    public Professor toEntity(ProfessorDetalhadoDTO professorDetalhadoDTO) {
-        if ( professorDetalhadoDTO == null ) {
+    protected List<Disciplina> disciplinaDTOListToDisciplinaList(List<DisciplinaDTO> list) {
+        if ( list == null ) {
             return null;
         }
 
-        Professor professor = new Professor();
+        List<Disciplina> list1 = new ArrayList<Disciplina>( list.size() );
+        for ( DisciplinaDTO disciplinaDTO : list ) {
+            list1.add( disciplinaDTOToDisciplina( disciplinaDTO ) );
+        }
 
-        professor.setId( professorDetalhadoDTO.getId() );
-        professor.setNome( professorDetalhadoDTO.getNome() );
-        professor.setMatricula( professorDetalhadoDTO.getMatricula() );
-        professor.setDisciplinas( disciplinaDTOListToDisciplinaList( professorDetalhadoDTO.getDisciplinas() ) );
-
-        return professor;
+        return list1;
     }
 
     protected DisciplinaDTO disciplinaToDisciplinaDTO(Disciplina disciplina) {
@@ -101,35 +130,6 @@ public class ProfessorDetalhadoMapperImpl implements ProfessorDetalhadoMapper {
         List<DisciplinaDTO> list1 = new ArrayList<DisciplinaDTO>( list.size() );
         for ( Disciplina disciplina : list ) {
             list1.add( disciplinaToDisciplinaDTO( disciplina ) );
-        }
-
-        return list1;
-    }
-
-    protected Disciplina disciplinaDTOToDisciplina(DisciplinaDTO disciplinaDTO) {
-        if ( disciplinaDTO == null ) {
-            return null;
-        }
-
-        Disciplina disciplina = new Disciplina();
-
-        disciplina.setId( disciplinaDTO.getId() );
-        disciplina.setNome( disciplinaDTO.getNome() );
-        disciplina.setDescricao( disciplinaDTO.getDescricao() );
-        disciplina.setCargaHoraria( disciplinaDTO.getCargaHoraria() );
-        disciplina.setAtiva( disciplinaDTO.getAtiva() );
-
-        return disciplina;
-    }
-
-    protected List<Disciplina> disciplinaDTOListToDisciplinaList(List<DisciplinaDTO> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<Disciplina> list1 = new ArrayList<Disciplina>( list.size() );
-        for ( DisciplinaDTO disciplinaDTO : list ) {
-            list1.add( disciplinaDTOToDisciplina( disciplinaDTO ) );
         }
 
         return list1;

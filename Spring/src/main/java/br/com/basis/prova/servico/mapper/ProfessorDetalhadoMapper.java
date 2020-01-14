@@ -6,10 +6,10 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {})
 public interface ProfessorDetalhadoMapper extends EntityMapper<ProfessorDetalhadoDTO, Professor> {
-
+/*
     @Override
     ProfessorDetalhadoDTO toDto(Professor professor);
 
     @Override
-    Professor toEntity(ProfessorDetalhadoDTO professorDetalhadoDTO);
+    Professor toEntity(ProfessorDetalhadoDTO professorDetalhadoDTO);*/
 }

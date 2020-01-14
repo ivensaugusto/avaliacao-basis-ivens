@@ -2,7 +2,6 @@ package br.com.basis.prova.servico.mapper;
 
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
-import br.com.basis.prova.dominio.dto.DisciplinaGravarDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -16,7 +15,4 @@ public interface DisciplinaMapper extends EntityMapper<DisciplinaDTO, Disciplina
     @Override
     @Mapping(target = "professor.id", source = "idProfessor")
     Disciplina toEntity(DisciplinaDTO disciplinaDTO);
-
-    @Mapping(target = "professor.id", source = "idProfessor")
-    Disciplina toEntity(DisciplinaGravarDTO disciplinaGravarDTO);
 }

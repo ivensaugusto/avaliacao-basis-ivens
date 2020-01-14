@@ -9,7 +9,6 @@ import br.com.basis.prova.repositorio.AlunoRepositorio;
 import br.com.basis.prova.repositorio.DisciplinaRepositorio;
 import br.com.basis.prova.servico.exception.RegraNegocioException;
 import br.com.basis.prova.servico.mapper.AlunoDetalhadoMapper;
-import br.com.basis.prova.servico.mapper.AlunoGravarMapper;
 import br.com.basis.prova.servico.mapper.AlunoMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +28,7 @@ public class AlunoServico {
 
     public AlunoServico(AlunoMapper alunoMapper, AlunoDetalhadoMapper alunoDetalhadoMapper,
                         AlunoRepositorio alunoRepositorio, DisciplinaRepositorio disciplinaRepositorio) {
+
         this.alunoMapper = alunoMapper;
         this.alunoDetalhadoMapper = alunoDetalhadoMapper;
         this.alunoRepositorio = alunoRepositorio;
@@ -37,15 +37,12 @@ public class AlunoServico {
 
     public AlunoDTO salvar(AlunoDTO alunoDTO) {
         Aluno aluno = alunoMapper.toEntity(alunoDTO);
-
         if(verificarCPF(aluno)){
             throw new RegraNegocioException("CPF já existe");
         }
-
         if(verificarMatricula(aluno)){
             throw new RegraNegocioException("Matrícula já existe");
         }
-
         alunoRepositorio.save(aluno);
         return alunoMapper.toDto(aluno);
     }

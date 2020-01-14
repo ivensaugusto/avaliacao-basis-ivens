@@ -43,7 +43,7 @@ public class Disciplina {
     private Integer ativa;
 
     @JoinColumn(name = "ID_PROFESSOR", referencedColumnName = "ID")
-    @ManyToOne(optional = false/*, fetch = FetchType.LAZY*/)
+    @ManyToOne(optional = false)
     private Professor professor;
 
     @JsonBackReference

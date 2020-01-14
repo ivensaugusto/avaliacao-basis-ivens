@@ -15,18 +15,12 @@ import java.util.List;
 @Repository
 public interface DisciplinaRepositorio extends JpaRepository<Disciplina, Integer>, JpaSpecificationExecutor<Disciplina> {
 
-    @Modifying
-    @Query(value = "DELETE FROM DISCIPLINA " +
-            "WHERE DISCIPLINA.ID NOT IN ( " +
-            "SELECT ID_DISCIPLINA FROM ALUNO_DISCIPLINA)" +
-            "AND DISCIPLINA.NOME = :nome"
-            , nativeQuery = true)
-    void deleteByNome(@Param("nome") String nome);
-
     Disciplina findByNome(String nome);
 
     List<Disciplina> findByProfessor(Professor professor);
 
     List<Disciplina> findAllByAtivaAndAlunos(Integer ativa, Aluno aluno);
+
+    List<Disciplina> findAllByAtivaAndProfessor(Integer ativa, Professor professor);
 
 }

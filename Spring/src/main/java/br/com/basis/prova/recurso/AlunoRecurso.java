@@ -1,7 +1,6 @@
 package br.com.basis.prova.recurso;
 
 import br.com.basis.prova.dominio.dto.AlunoDTO;
-import br.com.basis.prova.dominio.dto.AlunoGravarDTO;
 import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
 import br.com.basis.prova.servico.AlunoServico;
 import org.springframework.http.ResponseEntity;
