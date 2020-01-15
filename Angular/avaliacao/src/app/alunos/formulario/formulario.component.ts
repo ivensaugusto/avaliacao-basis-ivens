@@ -6,6 +6,8 @@ import { SelectItem } from 'primeng/api/selectitem';
 import { Aluno } from '../aluno.model';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -19,15 +21,28 @@ export class FormularioComponent implements OnInit {
   nomeDisciplinas: SelectItem[] = [];
   disciplinas: any[] = [];
   aluno: Aluno = new Aluno();
+  alunos: any = [];
   disciplinasSelecionadas: any[];
 
   constructor(
+    private title: Title,
     private alunoService: AlunoService,
-    private disciplinaService: DisciplinaService
+    private disciplinaService: DisciplinaService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Cadastro de alunos');
     this.consultarDisciplinas();
+    this.atualizar();
+    console.log(this.buscarAlunoporId(this.route.snapshot.params[`id`]));
+    console.log(this.route.snapshot.params[`id`]);
+    console.log(this.alunos);
+    console.log(this.disciplinas);
+    console.log(this.nomeDisciplinas);
+
+
+
   }
 
   salvarAluno(formAlunos: NgForm) {
@@ -36,32 +51,24 @@ export class FormularioComponent implements OnInit {
     this.aluno.matricula = formAlunos.value.matricula;
     this.aluno.dataNascimento = formAlunos.value.dataNascimento;
     this.listarDisciplinas();
-    this.alunoService.adicionar(this.toJson(this.aluno)).subscribe();
-    console.log(JSON.parse(JSON.stringify(this.aluno)));
-    formAlunos.reset();
+    if (this.aluno.disciplinas.length === 0) {
+      alert('O aluno deve estar matriculado em alguma disciplina.');
+    } else {
+      this.alunoService.adicionar(this.aluno).subscribe();
+      console.log(this.aluno);
+      formAlunos.reset();
+    }
   }
 
-  listarDisciplinasSelecionadas(event: any) {
-    this.disciplinasSelecionadas = event.value;
+  buscarAlunoporId(id: number) {
+    return this.alunos.find(aluno => aluno.id === id);
   }
 
-  listarDisciplinas() {
-    this.aluno.disciplinas = [];
-    this.disciplinasSelecionadas.forEach(diciplinaSelecionada => {
-      const disciplinaObj = this.disciplinas.find(iten => iten.id === diciplinaSelecionada);
-      if (disciplinaObj) {
-        this.aluno.disciplinas.push(disciplinaObj);
-      }
+  atualizar() {
+    this.alunoService.consultar().subscribe(res => {
+      this.alunos = res;
     });
-    this.disciplinasSelecionadas = [];
-  }
-
-  toJson(obj: any) {
-    return JSON.parse(JSON.stringify(obj));
-  }
-
-  consultarAluno() {
-    return this.alunoService.consultar();
+    return this.alunos;
   }
 
   consultarDisciplinas() {
@@ -78,6 +85,21 @@ export class FormularioComponent implements OnInit {
         value: disciplina.id
       });
     });
+  }
+
+
+  listarDisciplinasSelecionadas(event: any) {
+    this.disciplinasSelecionadas = event.value;
+  }
+
+  listarDisciplinas() {
+    this.aluno.disciplinas = [];
+    if (this.disciplinasSelecionadas) {
+      this.disciplinasSelecionadas.forEach(diciplinaSelecionada => {
+        this.aluno.disciplinas.push(this.disciplinas.find(iten => iten.id === diciplinaSelecionada));
+      });
+    }
+    this.disciplinasSelecionadas = [];
   }
 
 }

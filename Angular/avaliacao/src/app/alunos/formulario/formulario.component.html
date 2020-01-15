@@ -27,9 +27,8 @@
 
       <div class="ui-g-6 ui-fluid">
         <label class="ui-g-12">Diciplinas</label>
-        <p-multiSelect (onChange)="listarDisciplinasSelecionadas($event)" class="ui-g-6"
-          [options]="nomeDisciplinas" placeholder="Selecione" [filter]="true" name="disciplinas" ngModel
-          #disciplinas="ngModel" required>
+        <p-multiSelect (onChange)="listarDisciplinasSelecionadas($event)" class="ui-g-6" [options]="nomeDisciplinas"
+          placeholder="Selecione" [filter]="true" name="disciplinas" ngModel #disciplinas="ngModel" required>
         </p-multiSelect>
         <app-message class="ui-g-12" [control]="disciplinas" error="required" text="Informe uma disciplina.">
         </app-message>
@@ -45,7 +44,7 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
-        <a href="javascript:;">Voltar para pesquisa</a>
+        <a routerLink="/listaAlunos">Voltar para lista de alunos</a>
       </div>
 
     </div>

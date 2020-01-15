@@ -1,4 +1,4 @@
-<p-table [value]="getAlunos()" [paginator]="true" [rows]="5">
+<p-table [(value)]="alunos" [paginator]="true" [rows]="6">
   <ng-template pTemplate="header">
     <tr>
       <th class="col-nome-header">Nome</th>
@@ -15,18 +15,19 @@
       <td class="col-matricula">{{alunos.matricula}}</td>
       <td class="col-data">{{alunos.idade}}</td>
       <td class="col-disciplinas">
-        <div *ngIf="getTamanhoDisciplinas(alunos.nomeDisciplinas)" style="color: red">
+        <div *ngIf="getTamanhoListaDisciplinas(alunos.nomeDisciplinas)" style="color: red">
           Sem disciplinas atribuidas.
         </div>
-        <div>{{alunos.nomeDisciplinas}}</div>
+        <div *ngFor="let nomedisciplina of alunos.nomeDisciplinas">{{nomedisciplina}}</div>
       </td>
       <td>
         <div pTooltip="Atribuir disciplina" style="display:inline-block;">
-          <button pButton icon="pi pi-check" Class="ui-button-info" (click)="alterar(alunos)"></button>
+          <button pButton icon="pi pi-check" Class="ui-button-info"
+            [routerLink]="['/cadastroAlunos', alunos.id]"></button>
         </div>
         <div pTooltip="Apagar alunos" style="display:inline-block;">
           <button pButton icon="pi pi-times" Class="ui-button-danger"
-            [disabled]="!getTamanhoDisciplinas(alunos.nomeDisciplinas)" (click)="deletar(alunos)"></button>
+            [disabled]="!getTamanhoListaDisciplinas(alunos.nomeDisciplinas)" (click)="deletar(alunos)"></button>
         </div>
 
       </td>

@@ -114,15 +114,23 @@ export class AlunoService {
   constructor(private http: HttpClient) { }
 
   adicionar(aluno: Aluno) {
-    return this.http.post<any>('http://localhost:8080/api/alunos', aluno);
+    return this.http.post<any>(this.url, aluno);
   }
 
-  consultar() {
-    return this.http.get<any>('http://localhost:8080/api/alunos/detalhes');
+  consultar(): Promise<any>{
+    return this.http.get<any>(this.url + '/detalhes')
+    .toPromise()
+    .then(response => response.content);
+  }
+
+  listarTodas(): Promise<any> {
+    return this.http.get<any>(this.pessoasUrl)
+      .toPromise()
+      .then(response => response.content);
   }
 
   deletar(aluno: Aluno) {
-    return this.http.delete<any>('http://localhost:8080/api/alunos/' + aluno.id);
+    return this.http.delete<any>(this.url + '/' + aluno.id);
   }
 
 }

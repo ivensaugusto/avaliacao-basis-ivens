@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AlunoService } from 'src/app/services/aluno.service';
+import { ListarComponent } from '../listar/listar.component';
+import { Aluno } from '../aluno.model';
 
 
 @Component({
@@ -11,9 +13,12 @@ export class AlunosGridComponent {
 
   @Input() alunos = [];
 
-  constructor(private alunoService: AlunoService) { }
+  constructor(
+    private alunoService: AlunoService,
+    private listarComponent: ListarComponent
+  ) { }
 
-  getTamanhoDisciplinas(lista: Array<string>) {
+  getTamanhoListaDisciplinas(lista: Array<string>) {
     return lista.length === 0;
   }
 
@@ -21,13 +26,20 @@ export class AlunosGridComponent {
     return this.alunos;
   }
 
-  alterar(alunos) {
-    console.log(alunos);
-
+  alterar(aluno: Aluno) {
+    this.listarComponent.alterar(aluno);
+    this.atualizar();
   }
 
-  deletar(alunos) {
-    console.log(alunos);
+  deletar(aluno: Aluno) {
+    this.listarComponent.deletar(aluno);
+    this.atualizar();
   }
 
+  atualizar() {
+    this.alunos = this.listarComponent.atualizar();
+    this.alunoService.consultar().subscribe(res => {
+      this.alunos = res;
+    });
+  }
 }

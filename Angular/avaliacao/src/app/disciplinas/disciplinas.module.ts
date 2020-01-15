@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
@@ -11,6 +12,7 @@ import { DisciplinaService } from './../services/disciplina.service';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     SharedModule
   ],
   providers: [DisciplinaService]

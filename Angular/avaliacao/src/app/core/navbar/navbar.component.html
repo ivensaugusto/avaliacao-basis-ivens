@@ -2,16 +2,18 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars"></i></a>
+        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i
+            class="fa fa-bars"></i></a>
       </div>
     </div>
   </div>
 
-  <ul class="navbar-menu"[hidden]="!exibindoMenu">
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">Navegação</li>
-    <li class="navbar-menuitem"><a hef="#">Alunos</a></li>
-    <li class="navbar-menuitem"><a hef="#">Disciplina</a></li>
-    <li class="navbar-menuitem"><a hef="#">Professores</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/listaAlunos">Lista de alunos</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/cadastroAlunos">Cadastro de alunos</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/listaDisciplinas">Lista de disciplina</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/listaProfessores">Lista de professores</a></li>
     <li>Logout</li>
   </ul>
 

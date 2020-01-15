@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { DisciplinaService } from './../services/disciplina.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -28,6 +29,7 @@ import { AlunoService } from '../services/aluno.service';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    RouterModule,
     FormsModule,
     CalendarModule,
     DropdownModule,
