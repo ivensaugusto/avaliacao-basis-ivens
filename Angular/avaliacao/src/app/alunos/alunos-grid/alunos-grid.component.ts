@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { ListarComponent } from '../listar/listar.component';
-import { Aluno } from '../aluno.model';
+import { Aluno } from '../../models/aluno.model';
 
 
 @Component({

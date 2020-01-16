@@ -1,11 +1,11 @@
 <div class="container">
   <div class="ui-g">
     <div class="ui-g-12">
-      <h1>Alunos</h1>
+      <h2>Alunos</h2>
     </div>
     <div class="ui-g-12 ui-fluid">
       <label>Matricula </label>
-      <input pInputText [(ngModel)]="matricula" type="text" name="matricula">
+      <input pInputText [(ngModel)]="matricula" type="text" [(name)]="matricula">
     </div>
     <div class="ui-g-3">
       <button pButton class="botao" label="Pesquisar" (click)="getPesquisar(matricula)"></button>
@@ -13,12 +13,19 @@
   </div>
 
   <div class="ui-g">
+
     <div class="ui-g-12">
       <app-alunos-grid [alunos]="alunos"></app-alunos-grid>
     </div>
-    <div class="ui-g-12">
+
+    <div class="ui-g-2">
       <button pButton label="Novo aluno" routerLink="/cadastroAlunos">
       </button>
+    </div>
+    <div class="ui-g-2">
+      <button pButton label="Atualizar" (click)="atualizar()">
+      </button>
+
     </div>
   </div>
 </div>

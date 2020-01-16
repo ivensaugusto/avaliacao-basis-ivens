@@ -1,11 +1,11 @@
-import { Aluno } from './../alunos/aluno.model';
+import { Aluno } from '../models/aluno.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AlunoService {
 
-  ultimoId = 1;
+  /* ultimoId = 1;
 
   alunos = [
     {
@@ -108,6 +108,7 @@ export class AlunoService {
       ]
     }
   ];
+ */
 
   url = 'http://localhost:8080/api/alunos';
 
@@ -117,16 +118,12 @@ export class AlunoService {
     return this.http.post<any>(this.url, aluno);
   }
 
-  consultar(): Promise<any>{
-    return this.http.get<any>(this.url + '/detalhes')
-    .toPromise()
-    .then(response => response.content);
+  consultar() {
+    return this.http.get<any>(this.url + '/detalhes');
   }
 
-  listarTodas(): Promise<any> {
-    return this.http.get<any>(this.pessoasUrl)
-      .toPromise()
-      .then(response => response.content);
+  consultarPorId(id: number) {
+    return this.http.get<any>(this.url + '/' + id);
   }
 
   deletar(aluno: Aluno) {

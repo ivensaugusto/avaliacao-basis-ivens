@@ -37,10 +37,10 @@ public class AlunoServico {
 
     public AlunoDTO salvar(AlunoDTO alunoDTO) {
         Aluno aluno = alunoMapper.toEntity(alunoDTO);
-        if(verificarCPF(aluno)){
+        if (verificarCPF(aluno)) {
             throw new RegraNegocioException("CPF já existe");
         }
-        if(verificarMatricula(aluno)){
+        if (verificarMatricula(aluno)) {
             throw new RegraNegocioException("Matrícula já existe");
         }
         alunoRepositorio.save(aluno);
@@ -55,6 +55,12 @@ public class AlunoServico {
     private boolean verificarMatricula(Aluno aluno) {
         Aluno alunoMatricula = alunoRepositorio.findByMatricula(aluno.getMatricula());
         return !(alunoMatricula == null || alunoMatricula.getId().equals(aluno.getId()));
+    }
+
+    public AlunoDTO consultarPorId(Integer id) {
+        AlunoDTO alunoDTO = alunoMapper.toDto(alunoRepositorio.findById(id).get());
+        alunoDTO.setIdade(LocalDate.now().getYear() - alunoDTO.getDataNascimento().getYear());
+        return alunoDTO;
     }
 
     public List<AlunoDTO> consultar() {
@@ -89,11 +95,11 @@ public class AlunoServico {
     public void excluir(Integer id) {
 
         Aluno aluno = alunoRepositorio.findById(id).orElseThrow(() ->
-            new RegraNegocioException("Aluno não encontrado"));
+                new RegraNegocioException("Aluno não encontrado"));
 
         List<Disciplina> disciplinas = disciplinaRepositorio.findAllByAtivaAndAlunos(1, aluno);
 
-        if(!disciplinas.isEmpty()){
+        if (!disciplinas.isEmpty()) {
             throw new RegraNegocioException("Aluno matriculado em disciplinas");
         }
 

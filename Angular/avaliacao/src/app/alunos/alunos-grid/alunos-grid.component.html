@@ -1,4 +1,4 @@
-<p-table [(value)]="alunos" [paginator]="true" [rows]="6">
+<p-table [(value)]="alunos" [paginator]="true" [rows]="4">
   <ng-template pTemplate="header">
     <tr>
       <th class="col-nome-header">Nome</th>
@@ -20,7 +20,7 @@
         </div>
         <div *ngFor="let nomedisciplina of alunos.nomeDisciplinas">{{nomedisciplina}}</div>
       </td>
-      <td>
+      <td class="col-acoes">
         <div pTooltip="Atribuir disciplina" style="display:inline-block;">
           <button pButton icon="pi pi-check" Class="ui-button-info"
             [routerLink]="['/cadastroAlunos', alunos.id]"></button>

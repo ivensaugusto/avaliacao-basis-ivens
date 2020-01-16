@@ -7,10 +7,15 @@ import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+import java.util.Optional;
+
 @Mapper(componentModel = "spring", uses = {DisciplinaMapper.class})
 public interface AlunoMapper extends EntityMapper<AlunoDTO, Aluno> {
 
     AlunoDTO toDto(Aluno aluno);
+
     Aluno toEntity(AlunoDTO alunoDTO);
 
+    AlunoDTO toDto(Optional<Aluno> byId);
 }

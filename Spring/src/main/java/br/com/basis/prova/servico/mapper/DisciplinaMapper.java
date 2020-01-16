@@ -5,6 +5,8 @@ import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.Optional;
+
 @Mapper(componentModel = "spring", uses = {ProfessorMapper.class})
 public interface DisciplinaMapper extends EntityMapper<DisciplinaDTO, Disciplina> {
 
@@ -15,4 +17,5 @@ public interface DisciplinaMapper extends EntityMapper<DisciplinaDTO, Disciplina
     @Override
     @Mapping(target = "professor.id", source = "idProfessor")
     Disciplina toEntity(DisciplinaDTO disciplinaDTO);
+
 }

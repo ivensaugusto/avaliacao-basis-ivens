@@ -4,13 +4,14 @@ import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.dto.AlunoDTO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-14T11:21:42-0300",
+    date = "2020-01-16T16:03:47-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -81,5 +82,16 @@ public class AlunoMapperImpl implements AlunoMapper {
         aluno.setDisciplinas( disciplinaMapper.toEntity( alunoDTO.getDisciplinas() ) );
 
         return aluno;
+    }
+
+    @Override
+    public AlunoDTO toDto(Optional<Aluno> byId) {
+        if ( byId == null ) {
+            return null;
+        }
+
+        AlunoDTO alunoDTO = new AlunoDTO();
+
+        return alunoDTO;
     }
 }

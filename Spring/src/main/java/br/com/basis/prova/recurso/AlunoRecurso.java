@@ -42,11 +42,15 @@ public class AlunoRecurso {
         return ResponseEntity.status(200).build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<AlunoDTO> consultarPorId(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(alunoServico.consultarPorId(id));
+    }
+
     @GetMapping
     public ResponseEntity<List<AlunoDTO>> consultar() {
         return ResponseEntity.ok(alunoServico.consultar());
     }
-
 
     @GetMapping("/detalhes")
     public ResponseEntity<List<AlunoDetalhadoDTO>> detalhar() {

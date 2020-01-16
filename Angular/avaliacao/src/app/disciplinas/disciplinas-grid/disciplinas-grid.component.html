@@ -1,0 +1,40 @@
+<!-- nome, carga horária e o nome do professor -->
+<p-table [(value)]="disciplinas" [paginator]="true" [rows]="4">
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="col-nome-header">Nome</th>
+      <!-- <th class="col-descricao-header">Descrição</th> -->
+      <th class="col-data-header">Carga horaria</th>
+      <th class="col-professor-header">Professor</th>
+      <th class="col-alunos-header">Alunos</th>
+      <th class="col-status-header">Status</th>
+      <th class="col-acoes-header">Ação</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-disciplinas>
+    <tr>
+      <td class="col-nome">{{disciplinas.nome}}</td>
+      <!-- <td class="col-descricao">{{disciplinas.descricao}}</td> -->
+      <td class="col-data">{{disciplinas.cargaHoraria}}</td>
+      <td class="col-professor">{{disciplinas.nomeProfessor}}</td>
+      <td class="col-alunos">{{disciplinas.alunos.length}}</td>
+      <td class="col-status">
+        <div *ngIf="disciplinas.ativa == 0" style="color: red">
+          Disciplina inativa.
+        </div>
+        {{disciplinas.ativa}}
+      </td>
+      <td class="col-acoes">
+        <div pTooltip="Atribuir professor" style="display:inline-block;">
+          <button pButton icon="pi pi-check" Class="ui-button-info"
+            [routerLink]="['/cadastroDisciplinas', disciplinas.id]"></button>
+        </div>
+        <div pTooltip="Apagar disciplina" style="display:inline-block;">
+          <button pButton icon="pi pi-times" Class="ui-button-danger"
+            [disabled]="!getTamanhoListaAlunos(disciplinas.alunos)" (click)="deletar(disciplinas)"></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

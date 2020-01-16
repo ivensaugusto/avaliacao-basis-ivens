@@ -3,6 +3,8 @@ package br.com.basis.prova.servico;
 import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
+import br.com.basis.prova.dominio.dto.AlunoDTO;
+import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import br.com.basis.prova.repositorio.AlunoRepositorio;
@@ -13,6 +15,8 @@ import br.com.basis.prova.servico.mapper.DisciplinaMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,7 +46,6 @@ public class DisciplinaServico {
     }
 
 
-
     public void excluir(Integer id) {
 
         Disciplina disciplina = disciplinaRepositorio.findById(id).orElseThrow(() ->
@@ -60,11 +63,17 @@ public class DisciplinaServico {
     }
 
     public List<DisciplinaDetalhadaDTO> detalhar() {
-        List<DisciplinaDetalhadaDTO> disciplinas = disciplinaDetalhadaMapper.toDto( this.disciplinaRepositorio.findAll());
-        return disciplinas;
+        List<Disciplina> disciplinas = this.disciplinaRepositorio.findAll();
+        List<DisciplinaDetalhadaDTO> disciplinasDetalhadas = disciplinaDetalhadaMapper.toDto(disciplinas);
+        return disciplinasDetalhadas;
     }
-/*
 
+    public DisciplinaDTO consultarPorId(Integer id) {
+        DisciplinaDTO disciplinaDTO = disciplinaMapper.toDto(disciplinaRepositorio.findById(id).get());
+        return disciplinaDTO;
+    }
+
+/*
     public DisciplinaDTO editar(DisciplinaDTO disciplinaGravarDTO) {
         Disciplina disciplina = this.disciplinaRepositorio.findByNome(disciplinaGravarDTO.getNome());
         disciplinaGravarDTO.setId(disciplina.getId());

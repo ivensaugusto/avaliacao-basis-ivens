@@ -1,0 +1,64 @@
+<div class="container">
+  <form #ngForm="ngForm" (ngSubmit)="salvarDisciplina(ngForm)">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h2>Cadastro de disciplinas</h2>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label class="ui-g-12">Nome</label>
+        <input class="ui-g-9" pInputText type="text" name="nome" [(ngModel)]="disciplina.nome" #nome="ngModel" required
+          minlength="3">
+        <app-message class="ui-g-9" [control]="nome" error="required" text="Informe o nome da disciplina.">
+        </app-message>
+        <app-message class="ui-g-9" [control]="nome" error="minlength"
+          text="Minimo de {{ nome.errors?.minlength?.requiredLength }} caracteres."></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label class="ui-g-12">Descrição</label>
+        <textarea class="ui-g-9" pInputTextarea name="descricao" [(ngModel)]="disciplina.descricao" #descricao="ngModel"
+          rows="3" cols="50"></textarea>
+        <app-message class="ui-g-9" [control]="descricao" error="required" text="Informe a descrição.">
+        </app-message>
+      </div>
+
+      <div class="ui-g-3 ui-fluid">
+        <label class="ui-g-9">Carga horária</label>
+        <input class="ui-g-4" pInputText type="number" [(ngModel)]="disciplina.cargaHoraria" name="cargaHoraria"
+          #cargaHoraria="ngModel" required>
+        <app-message class="ui-g-4" [control]="cargaHoraria" error="required" text="Informe a carga horária.">
+        </app-message>
+      </div>
+<!--
+      <div class="ui-g-3 ui-fluid">
+        <label class="ui-g-9">Alunos</label>
+        <input class="ui-g-4" pInputText type="number" [(ngModel)]="disciplina.alunos.length" name="alunos"
+          #alunos="ngModel" required>
+        <app-message class="ui-g-4" [control]="alunos" error="required" text="Informe a carga horária.">
+        </app-message>
+      </div> -->
+
+      <div class="ui-g-4 ui-fluid">
+        <label class="ui-g-9">Professores</label>
+        <p-dropdown class="ui-g-7" (onChange)="listarProfessoresSelecionados($event)" [options]="nomeProfessores"
+          placeholder="Selecione" [filter]="true" name="professores" #professores="ngModel" required
+          [(ngModel)]="professor">
+        </p-dropdown>
+        <app-message class="ui-g-12" [control]="professores" error="required" text="Informe um professor.">
+        </app-message>
+      </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label class="ui-g-2">Ativa</label>
+        <p-checkbox class="ui-g-1" name="ativa" binary="true" [(ngModel)]="selectedValues"></p-checkbox>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar"></button>
+        <a routerLink="/listaDisciplinas">Voltar para lista de disciplinas</a>
+      </div>
+
+    </div>
+  </form>
+</div>

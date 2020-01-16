@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DisciplinaService } from './../../services/disciplina.service';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { SelectItem } from 'primeng/api/selectitem';
-import { Aluno } from '../aluno.model';
+import { Aluno } from '../../models/aluno.model';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
@@ -23,6 +23,8 @@ export class FormularioComponent implements OnInit {
   aluno: Aluno = new Aluno();
   alunos: any = [];
   disciplinasSelecionadas: any[];
+  disciplinasSelecionadasAlteracao: any[];
+  formAlunos: any;
 
   constructor(
     private title: Title,
@@ -35,14 +37,9 @@ export class FormularioComponent implements OnInit {
     this.title.setTitle('Cadastro de alunos');
     this.consultarDisciplinas();
     this.atualizar();
-    console.log(this.buscarAlunoporId(this.route.snapshot.params[`id`]));
-    console.log(this.route.snapshot.params[`id`]);
-    console.log(this.alunos);
-    console.log(this.disciplinas);
-    console.log(this.nomeDisciplinas);
-
-
-
+    if (this.route.snapshot.params[`id`]) {
+      this.buscarAlunoPorId(this.route.snapshot.params[`id`]);
+    }
   }
 
   salvarAluno(formAlunos: NgForm) {
@@ -51,24 +48,27 @@ export class FormularioComponent implements OnInit {
     this.aluno.matricula = formAlunos.value.matricula;
     this.aluno.dataNascimento = formAlunos.value.dataNascimento;
     this.listarDisciplinas();
-    if (this.aluno.disciplinas.length === 0) {
-      alert('O aluno deve estar matriculado em alguma disciplina.');
-    } else {
-      this.alunoService.adicionar(this.aluno).subscribe();
-      console.log(this.aluno);
-      formAlunos.reset();
+    const res = this.alunoService.adicionar(this.aluno).subscribe();
+    if (res) {
+      alert('Gravado com sucesso.');
+      console.log(res);
     }
+    formAlunos.reset();
   }
 
-  buscarAlunoporId(id: number) {
-    return this.alunos.find(aluno => aluno.id === id);
+  buscarAlunoPorId(id: number) {
+    this.consultarDisciplinas();
+    this.alunoService.consultarPorId(id).subscribe(aluno => {
+      this.aluno = aluno;
+      this.aluno.dataNascimento = new Date(this.aluno.dataNascimento);
+      this.disciplinasSelecionadas = this.toDropdown(this.aluno.disciplinas);
+    });
   }
 
   atualizar() {
     this.alunoService.consultar().subscribe(res => {
       this.alunos = res;
     });
-    return this.alunos;
   }
 
   consultarDisciplinas() {
@@ -87,9 +87,13 @@ export class FormularioComponent implements OnInit {
     });
   }
 
+  toDropdown(itens: any[]) {
+    return itens.map(item => item.id);
+  }
 
   listarDisciplinasSelecionadas(event: any) {
     this.disciplinasSelecionadas = event.value;
+    // console.log('event ' + event.value);
   }
 
   listarDisciplinas() {

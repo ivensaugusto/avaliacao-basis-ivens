@@ -1,0 +1,36 @@
+<p-table [(value)]="professores" [paginator]="true" [rows]="4">
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="col-nome-header">Nome</th>
+      <th class="col-matricula-header">Matricula</th>
+      <th class="col-data-header">Idade</th>
+      <th class="col-disciplinas-header">Disciplinas</th>
+      <th class="col-acoes-header">Ação</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-professores>
+    <tr>
+      <td class="col-nome">{{professores.nome}}</td>
+      <td class="col-matricula">{{professores.matricula}}</td>
+      <td class="col-data">{{professores.idade}}</td>
+      <td class="col-disciplinas">
+        <div *ngIf="getTamanhoListaDisciplinas(professores.nomeDisciplinas)" style="color: red">
+          Sem disciplinas atribuidas.
+        </div>
+        <div *ngFor="let nomedisciplina of professores.nomeDisciplinas">{{nomedisciplina}}</div>
+      </td>
+      <td class="col-acoes">
+        <div pTooltip="Atribuir disciplina" style="display:inline-block;">
+          <button pButton icon="pi pi-check" Class="ui-button-info"
+            [routerLink]="['/cadastroProfessores', professores.id]"></button>
+        </div>
+        <div pTooltip="Apagar professores" style="display:inline-block;">
+          <button pButton icon="pi pi-times" Class="ui-button-danger"
+            [disabled]="!getTamanhoListaDisciplinas(professores.nomeDisciplinas)" (click)="deletar(professores)"></button>
+        </div>
+
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

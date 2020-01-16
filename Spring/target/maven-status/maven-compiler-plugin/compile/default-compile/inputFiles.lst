@@ -8,6 +8,7 @@
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/Aluno.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/servico/AlunoServico.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/dto/AlunoDTO.java
+/home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/dto/AlunoSemDisciplinasDTO.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/repositorio/DisciplinaRepositorio.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/servico/DisciplinaServico.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/dto/ProfessorDetalhadoDTO.java

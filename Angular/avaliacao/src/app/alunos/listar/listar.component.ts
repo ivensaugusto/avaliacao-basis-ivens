@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AlunoService } from 'src/app/services/aluno.service';
-import { Aluno } from '../aluno.model';
-
+import { Aluno } from '../../models/aluno.model';
 
 @Component({
   selector: 'app-listar',
@@ -11,7 +10,6 @@ import { Aluno } from '../aluno.model';
 })
 
 export class ListarComponent implements OnInit {
-  // localhost:8080/api/alunos/detalhes -> fazer metodo buscar alunos...
 
   alunos: any = [];
 
@@ -26,10 +24,15 @@ export class ListarComponent implements OnInit {
   }
 
   getPesquisar(matricula: string) {
-    this.alunos = this.alunos.filter((aluno: { matricula: string; }) =>
+    const alunoEncontrado = this.alunos.filter((aluno: { matricula: string; }) =>
       aluno.matricula === matricula
     );
-    console.log(this.alunos);
+    if (alunoEncontrado.length !== 0) {
+      this.alunos = alunoEncontrado;
+    } else {
+      alert('Aluno não encontrado, insira outra matricula.');
+    }
+    console.log(alunoEncontrado);
   }
 
   atualizar() {

@@ -1,9 +1,13 @@
 package br.com.basis.prova.dominio.dto;
 
+import br.com.basis.prova.dominio.Aluno;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -14,5 +18,7 @@ public class DisciplinaDetalhadaDTO {
     private String nome;
     private Integer cargaHoraria;
     private String nomeProfessor;
+    private Integer ativa;
+    private List<AlunoSemDisciplinasDTO> alunos;
 
 }

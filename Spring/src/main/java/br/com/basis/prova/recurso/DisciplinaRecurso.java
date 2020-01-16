@@ -1,5 +1,6 @@
 package br.com.basis.prova.recurso;
 
+import br.com.basis.prova.dominio.dto.AlunoDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import br.com.basis.prova.servico.DisciplinaServico;
@@ -40,6 +41,11 @@ public class DisciplinaRecurso {
     public ResponseEntity<Void> excluir(@PathVariable("id") Integer id) {
         disciplinaServico.excluir(id);
         return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DisciplinaDTO> consultarPorId(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(disciplinaServico.consultarPorId(id));
     }
 
     @GetMapping
