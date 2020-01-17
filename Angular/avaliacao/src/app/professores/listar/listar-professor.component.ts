@@ -47,9 +47,8 @@ export class ListarProfessorComponent implements OnInit {
   }
 
   deletar(professores: Professor) {
-    const resp = this.professorService.deletar(professores).subscribe();
+    this.professorService.deletar(professores).subscribe();
     console.log('apagado');
-    console.log(resp);
     this.atualizar();
   }
 

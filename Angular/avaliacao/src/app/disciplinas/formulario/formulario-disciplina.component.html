@@ -43,7 +43,7 @@
         <label class="ui-g-9">Professores</label>
         <p-dropdown class="ui-g-7" (onChange)="listarProfessoresSelecionados($event)" [options]="nomeProfessores"
           placeholder="Selecione" [filter]="true" name="professores" #professores="ngModel" required
-          [(ngModel)]="professor">
+          [(ngModel)]="professoresSelecionados">
         </p-dropdown>
         <app-message class="ui-g-12" [control]="professores" error="required" text="Informe um professor.">
         </app-message>

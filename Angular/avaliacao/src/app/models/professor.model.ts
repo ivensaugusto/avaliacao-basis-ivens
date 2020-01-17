@@ -1,3 +1,5 @@
+import { Disciplina } from './disciplina.model';
+
 export class Professor {
 
   constructor(
@@ -6,8 +8,8 @@ export class Professor {
     public matricula?: string,
     public area?: string,
     public dataNascimento?: Date,
-    public disciplinas?: any[]
+    public disciplinas?: Disciplina[]
   ) {
-    this.disciplinas = [];
+    // this.disciplinas = new Disciplina();
   }
 }

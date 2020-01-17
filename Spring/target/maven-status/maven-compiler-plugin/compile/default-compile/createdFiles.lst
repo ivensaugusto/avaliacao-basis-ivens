@@ -5,11 +5,13 @@ br/com/basis/prova/configuracao/DatabaseConfiguration.class
 br/com/basis/prova/servico/mapper/DisciplinaDetalhadaMapper.class
 br/com/basis/prova/recurso/DisciplinaRecurso.class
 br/com/basis/prova/dominio/Professor.class
+br/com/basis/prova/dominio/dto/DisciplinaSemAlunoDTO.class
 br/com/basis/prova/dominio/dto/ProfessorDTO.class
 br/com/basis/prova/servico/mapper/ProfessorMapperImpl.class
 br/com/basis/prova/dominio/dto/ProfessorDetalhadoDTO.class
 br/com/basis/prova/servico/mapper/AlunoMapperImpl.class
 br/com/basis/prova/recurso/AlunoRecurso.class
+br/com/basis/prova/servico/mapper/DisciplinaSemAlunoMapper.class
 br/com/basis/prova/servico/mapper/AlunoDetalhadoMapperImpl.class
 br/com/basis/prova/servico/mapper/DisciplinaMapperImpl.class
 br/com/basis/prova/servico/mapper/ProfessorMapper.class
@@ -29,6 +31,7 @@ br/com/basis/prova/servico/AlunoServico.class
 br/com/basis/prova/dominio/Disciplina.class
 br/com/basis/prova/servico/exception/RegraNegocioException.class
 br/com/basis/prova/servico/mapper/DisciplinaDetalhadaMapperImpl.class
+br/com/basis/prova/servico/mapper/DisciplinaSemAlunoMapperImpl.class
 br/com/basis/prova/recurso/ProfessorRecurso.class
 br/com/basis/prova/repositorio/ProfessorRepositorio.class
 br/com/basis/prova/servico/mapper/ProfessorDetalhadoMapper.class

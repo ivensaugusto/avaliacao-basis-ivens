@@ -18,10 +18,10 @@
         <div *ngIf="getTamanhoListaDisciplinas(professores.nomeDisciplinas)" style="color: red">
           Sem disciplinas atribuidas.
         </div>
-        <div *ngFor="let nomedisciplina of professores.nomeDisciplinas">{{nomedisciplina}}</div>
+        <div *ngFor="let nomeDisciplina of professores.nomeDisciplinas">{{nomeDisciplina}}</div>
       </td>
       <td class="col-acoes">
-        <div pTooltip="Atribuir disciplina" style="display:inline-block;">
+        <div pTooltip="Atribuir" style="display:inline-block;">
           <button pButton icon="pi pi-check" Class="ui-button-info"
             [routerLink]="['/cadastroProfessores', professores.id]"></button>
         </div>

@@ -3,10 +3,12 @@
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/servico/mapper/AlunoDetalhadoMapper.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/servico/mapper/AlunoMapper.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/dto/DisciplinaDTO.java
+/home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/dto/DisciplinaSemAlunoDTO.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/Disciplina.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/Professor.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/Aluno.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/servico/AlunoServico.java
+/home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/servico/mapper/DisciplinaSemAlunoMapper.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/dto/AlunoDTO.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/dominio/dto/AlunoSemDisciplinasDTO.java
 /home/ivens/Documentos/_algoritimos/avaliacao-basis-ivens/Spring/src/main/java/br/com/basis/prova/repositorio/DisciplinaRepositorio.java

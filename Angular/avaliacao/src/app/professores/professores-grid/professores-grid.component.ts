@@ -26,19 +26,18 @@ export class ProfessoresGridComponent {
   }
 
   alterar(professor: Professor) {
-    this.listarComponent.alterar(professor);
+    this.listarProfessorComponent.alterar(professor);
     this.atualizar();
   }
 
   deletar(professor: Professor) {
-    this.listarComponent.deletar(professor);
+    this.listarProfessorComponent.deletar(professor);
     this.atualizar();
+    // alert('Apagado.');
   }
 
   atualizar() {
-    this.professores = this.listarComponent.atualizar();
-    this.professoreservice.consultar().subscribe(res => {
-      this.professores = res;
-    });
+    this.professores = this.listarProfessorComponent.atualizar();
   }
+
 }

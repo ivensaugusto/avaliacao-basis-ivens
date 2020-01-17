@@ -15,12 +15,9 @@ import java.util.List;
 @Repository
 public interface DisciplinaRepositorio extends JpaRepository<Disciplina, Integer>, JpaSpecificationExecutor<Disciplina> {
 
-    Disciplina findByNome(String nome);
-
-    List<Disciplina> findByProfessor(Professor professor);
 
     List<Disciplina> findAllByAtivaAndAlunos(Integer ativa, Aluno aluno);
 
-    List<Disciplina> findAllByAtivaAndProfessor(Integer ativa, Professor professor);
+    List<Disciplina> findAllByAtivaAndProfessor(Integer ativa, Integer professor);
 
 }

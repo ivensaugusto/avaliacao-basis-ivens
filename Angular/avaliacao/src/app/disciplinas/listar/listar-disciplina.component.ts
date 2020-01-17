@@ -36,7 +36,7 @@ export class ListarDisciplinaComponent implements OnInit {
   }
 
   atualizar() {
-    this.disciplinaService.consultar().subscribe(res => {
+    this.disciplinaService.consultarDetalhado().subscribe(res => {
       this.disciplinas = res;
       console.log(this.disciplinas);
 

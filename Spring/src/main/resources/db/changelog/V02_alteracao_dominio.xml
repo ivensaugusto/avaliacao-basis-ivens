@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <changeSet id="5" author="ivens.pinto">
+        <sql>
+
+            CREATE TABLE DISCIPLINA_PROFESSOR (
+            ID_PROFESSOR INT NOT NULL,
+            ID_DISCIPLINA INT NOT NULL,
+            CONSTRAINT FK_PROFESSORDISC_ID FOREIGN KEY ( ID_PROFESSOR ) REFERENCES PROFESSOR ( ID ),
+            CONSTRAINT FK_DISCIPLINAPROF_ID FOREIGN KEY ( ID_DISCIPLINA ) REFERENCES DISCIPLINA( ID )
+            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="6" author="ivens.pinto">
+        <sql>
+
+            ALTER TABLE DISCIPLINA
+            DROP FOREIGN KEY FK_PROFESSOR_ID;
+
+            ALTER TABLE DISCIPLINA
+            DROP COLUMN ID_PROFESSOR;
+
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

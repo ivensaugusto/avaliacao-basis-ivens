@@ -4,6 +4,7 @@
       <w>aluno</w>
       <w>alunos</w>
       <w>ativa</w>
+      <w>atuacao</w>
       <w>carga</w>
       <w>consultar</w>
       <w>descricao</w>
@@ -29,8 +30,10 @@
       <w>matriculados</w>
       <w>matrícula</w>
       <w>nascimento</w>
+      <w>negocio</w>
       <w>preencher</w>
       <w>professores</w>
+      <w>regra</w>
       <w>repositorio</w>
       <w>responsável</w>
       <w>salvar</w>

@@ -8,6 +8,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { ProfessorService } from 'src/app/services/professor.service';
 
 
 @Component({
@@ -29,14 +30,15 @@ export class FormularioComponent implements OnInit {
   constructor(
     private title: Title,
     private alunoService: AlunoService,
+    private professorService: ProfessorService,
     private disciplinaService: DisciplinaService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.title.setTitle('Cadastro de alunos');
-    this.consultarDisciplinas();
     this.atualizar();
+    this.consultarDisciplinas();
     if (this.route.snapshot.params[`id`]) {
       this.buscarAlunoPorId(this.route.snapshot.params[`id`]);
     }
@@ -48,11 +50,14 @@ export class FormularioComponent implements OnInit {
     this.aluno.matricula = formAlunos.value.matricula;
     this.aluno.dataNascimento = formAlunos.value.dataNascimento;
     this.listarDisciplinas();
-    const res = this.alunoService.adicionar(this.aluno).subscribe();
-    if (res) {
-      alert('Gravado com sucesso.');
-      console.log(res);
+
+    if (this.aluno.id) {
+      this.alunoService.alterar(this.aluno).subscribe();
+    } else {
+      this.alunoService.adicionar(this.aluno).subscribe();
     }
+
+    this.alunoService.adicionar(this.aluno).subscribe();
     formAlunos.reset();
   }
 
@@ -72,14 +77,14 @@ export class FormularioComponent implements OnInit {
   }
 
   consultarDisciplinas() {
-    this.disciplinaService.consultar().subscribe(disciplina => {
+    this.disciplinaService.consultarDetalhado().subscribe(disciplina => {
       this.disciplinas = disciplina;
-      this.converterParaDropDown();
+      this.converterParaDropDown(this.disciplinas);
     });
   }
 
-  converterParaDropDown() {
-    this.disciplinas.forEach(disciplina => {
+  converterParaDropDown(disc) {
+    disc.forEach(disciplina => {
       this.nomeDisciplinas.push({
         label: disciplina.nome,
         value: disciplina.id
@@ -91,7 +96,7 @@ export class FormularioComponent implements OnInit {
     return itens.map(item => item.id);
   }
 
-  listarDisciplinasSelecionadas(event: any) {
+    listarDisciplinasSelecionadas(event: any) {
     this.disciplinasSelecionadas = event.value;
     // console.log('event ' + event.value);
   }
@@ -103,7 +108,11 @@ export class FormularioComponent implements OnInit {
         this.aluno.disciplinas.push(this.disciplinas.find(iten => iten.id === diciplinaSelecionada));
       });
     }
-    this.disciplinasSelecionadas = [];
+    // this.disciplinasSelecionadas = [];
+  }
+
+  nomeProfessor(disc: number) {
+    return this.professorService.consultarPorId(disc);
   }
 
 }

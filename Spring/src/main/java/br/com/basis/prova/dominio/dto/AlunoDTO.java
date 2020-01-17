@@ -38,5 +38,5 @@ public class AlunoDTO {
 
     private Integer idade;
 
-    private List<DisciplinaDTO> disciplinas = new ArrayList<>();
+    private List<DisciplinaDetalhadaDTO> disciplinas = new ArrayList<>();
 }

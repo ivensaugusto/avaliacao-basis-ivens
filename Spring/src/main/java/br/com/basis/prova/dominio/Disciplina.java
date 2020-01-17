@@ -42,9 +42,9 @@ public class Disciplina {
     @Column(name = "ATIVA", nullable = false)
     private Integer ativa;
 
-    @JoinColumn(name = "ID_PROFESSOR", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Professor professor;
+ /*   @ManyToOne
+    @JoinColumn(name="")
+    private Professor professor;*/
 
     @JsonBackReference
     @ManyToMany(mappedBy = "disciplinas", fetch = FetchType.LAZY)

@@ -34,6 +34,12 @@ public class ProfessorServico {
         this.disciplinaRepositorio = disciplinaRepositorio;
     }
 
+    public ProfessorDTO consultarPorId(Integer id) {
+        ProfessorDTO professorDTO = professorMapper.toDto(professorRepositorio.findById(id).get());
+        professorDTO.setIdade(LocalDate.now().getYear() - professorDTO.getDataNascimento().getYear());
+        return professorDTO;
+    }
+
     public ProfessorDTO salvar(ProfessorDTO professorDTO) {
         Professor professor = professorMapper.toEntity(professorDTO);
 
@@ -44,8 +50,8 @@ public class ProfessorServico {
         if (verificarMatricula(professor)) {
             throw new RegraNegocioException("Matrícula já existe");
         }
-
         professorRepositorio.save(professor);
+
         return professorMapper.toDto(professor);
     }
 
@@ -72,16 +78,17 @@ public class ProfessorServico {
     }
 
     public List<ProfessorDetalhadoDTO> detalhar() {
-        List<ProfessorDetalhadoDTO> professores = professorDetalhadoMapper.toDto(this.professorRepositorio.findAll());
+        List<Professor> vv =this.professorRepositorio.findAll();
+        List<ProfessorDetalhadoDTO> professores = professorDetalhadoMapper.toDto(vv);
 
         professores.forEach(professorDetalhadoDTO -> {
             List<String> listNomeDisciplinasDTO = new ArrayList<String>();
-            List<DisciplinaDTO> disciplinasDTO = professorDetalhadoDTO.getDisciplinas();
-            for (DisciplinaDTO disciplinaDTO : disciplinasDTO) {
-                if (disciplinaDTO.getAtiva() == 1) {
-                    listNomeDisciplinasDTO.add(disciplinaDTO.getNome());
-                }
-            }
+//            List<DisciplinaDTO> disciplinasDTO = professorDetalhadoDTO.getDisciplinas();
+//            for (DisciplinaDTO disciplinaDTO : disciplinasDTO) {
+//                if (disciplinaDTO.getAtiva() == 1) {
+//                    listNomeDisciplinasDTO.add(disciplinaDTO.getNome());
+//                }
+//            }
             professorDetalhadoDTO.setNomeDisciplinas(listNomeDisciplinasDTO);
         });
         return professores;
@@ -92,7 +99,7 @@ public class ProfessorServico {
         Professor professor = professorRepositorio.findById(id).orElseThrow(() ->
                 new RegraNegocioException("Professor não encontrado"));
 
-        List<Disciplina> disciplinas = disciplinaRepositorio.findAllByAtivaAndProfessor(1, professor);
+        List<Disciplina> disciplinas = disciplinaRepositorio.findAllByAtivaAndProfessor(1, professor.getId());
 
         if (!disciplinas.isEmpty()) {
             throw new RegraNegocioException("professor responsável por disciplinas");

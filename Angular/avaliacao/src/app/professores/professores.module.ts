@@ -1,3 +1,4 @@
+import { CalendarModule } from 'primeng/calendar';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -35,6 +36,7 @@ import { DisciplinaService } from '../services/disciplina.service';
     HttpClientModule,
     MultiSelectModule,
     DropdownModule,
+    CalendarModule,
     PaginatorModule,
     TableModule,
     ButtonModule,

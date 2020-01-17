@@ -2,6 +2,7 @@ import { Professor } from './professor.model';
 import { Aluno } from './aluno.model';
 
 export class Disciplina {
+  nomeProfessor: string;
 
   constructor(
     public id?: number,

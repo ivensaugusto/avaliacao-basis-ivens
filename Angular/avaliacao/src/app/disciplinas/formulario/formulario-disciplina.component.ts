@@ -54,12 +54,12 @@ export class FormularioDisciplinaComponent implements OnInit {
     this.disciplina.cargaHoraria = formDisciplinas.value.cargaHoraria;
     this.disciplina.ativa = formDisciplinas.value.ativa ? 1 : 0;
     this.disciplina.idProfessor = formDisciplinas.value.professores;
-    const res = this.disciplinaService.adicionar(this.disciplina).subscribe();
-    if (res) { // capturar mensagem de erro.
-      alert('Gravado com sucesso.');
-      formDisciplinas.reset();
-      console.log(res);
+    if (this.disciplina.id) {
+      this.disciplinaService.alterar(this.disciplina).subscribe();
+    } else {
+      this.disciplinaService.adicionar(this.disciplina).subscribe();
     }
+    formDisciplinas.reset();
     this.selectedValues = true;
   }
 
@@ -71,7 +71,7 @@ export class FormularioDisciplinaComponent implements OnInit {
   }
 
   atualizar() {
-    this.disciplinaService.consultar().subscribe(res => {
+    this.disciplinaService.consultarDetalhado().subscribe(res => {
       this.disciplinas = res;
     });
   }

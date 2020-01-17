@@ -13,6 +13,10 @@ export class ProfessorService {
     return this.http.post<any>(this.url, professor);
   }
 
+  alterar(professor: Professor) {
+    return this.http.put<any>(this.url, professor);
+  }
+
   consultar() {
     return this.http.get<any>(this.url + '/detalhes');
   }

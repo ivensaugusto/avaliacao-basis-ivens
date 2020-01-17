@@ -15,8 +15,16 @@ export class DisciplinaService {
     return this.http.post<any>(this.url, disciplina);
   }
 
-  consultar() {
+  alterar(disciplina: Disciplina) {
+    return this.http.put<any>(this.url, disciplina);
+  }
+
+  consultarDetalhado() {
     return this.http.get<any>(this.url + '/detalhes');
+  }
+
+  consultar() {
+    return this.http.get<any>(this.url);
   }
 
   consultarPorId(id: number) {

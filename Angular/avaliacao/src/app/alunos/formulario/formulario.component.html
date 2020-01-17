@@ -29,10 +29,9 @@
 
       <div class="ui-g-6 ui-fluid">
         <label class="ui-g-12">Diciplinas</label>
-        <p-multiSelect (onChange)="listarDisciplinasSelecionadas($event)" class="ui-g-6" [options]="nomeDisciplinas"
+        <p-multiSelect [displaySelectedLabel]="true" (onChange)="listarDisciplinasSelecionadas($event)" class="ui-g-6" [options]="nomeDisciplinas"
           placeholder="Selecione" [filter]="true" name="disciplinas" #disciplinas="ngModel" required
-          [displaySelectedLabel]="true" [(ngModel)]="disciplinasSelecionadas">
-
+          [(ngModel)]="disciplinasSelecionadas">
         </p-multiSelect>
         <app-message class="ui-g-12" [control]="disciplinas" error="required" text="Informe uma disciplina.">
         </app-message>

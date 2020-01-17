@@ -7,5 +7,6 @@
 
     <include file="db/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/V01_criacao_dominio.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/V02_alteracao_dominio.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

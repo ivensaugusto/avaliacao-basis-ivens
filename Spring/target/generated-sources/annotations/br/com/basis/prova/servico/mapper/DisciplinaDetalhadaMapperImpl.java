@@ -2,7 +2,6 @@ package br.com.basis.prova.servico.mapper;
 
 import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.Disciplina;
-import br.com.basis.prova.dominio.Professor;
 import br.com.basis.prova.dominio.dto.AlunoSemDisciplinasDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-01-16T16:03:47-0300",
+    date = "2020-01-17T15:30:38-0300",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_232 (Private Build)"
 )
 @Component
@@ -54,13 +53,10 @@ public class DisciplinaDetalhadaMapperImpl implements DisciplinaDetalhadaMapper 
 
         DisciplinaDetalhadaDTO disciplinaDetalhadaDTO = new DisciplinaDetalhadaDTO();
 
-        String nome = disciplinaProfessorNome( disciplina );
-        if ( nome != null ) {
-            disciplinaDetalhadaDTO.setNomeProfessor( nome );
-        }
         disciplinaDetalhadaDTO.setId( disciplina.getId() );
         disciplinaDetalhadaDTO.setNome( disciplina.getNome() );
         disciplinaDetalhadaDTO.setCargaHoraria( disciplina.getCargaHoraria() );
+        disciplinaDetalhadaDTO.setDescricao( disciplina.getDescricao() );
         disciplinaDetalhadaDTO.setAtiva( disciplina.getAtiva() );
         disciplinaDetalhadaDTO.setAlunos( alunoListToAlunoSemDisciplinasDTOList( disciplina.getAlunos() ) );
 
@@ -75,29 +71,14 @@ public class DisciplinaDetalhadaMapperImpl implements DisciplinaDetalhadaMapper 
 
         Disciplina disciplina = new Disciplina();
 
-        disciplina.setProfessor( disciplinaDetalhadaDTOToProfessor( disciplinaDetalhadaDTO ) );
         disciplina.setId( disciplinaDetalhadaDTO.getId() );
         disciplina.setNome( disciplinaDetalhadaDTO.getNome() );
+        disciplina.setDescricao( disciplinaDetalhadaDTO.getDescricao() );
         disciplina.setCargaHoraria( disciplinaDetalhadaDTO.getCargaHoraria() );
         disciplina.setAtiva( disciplinaDetalhadaDTO.getAtiva() );
         disciplina.setAlunos( alunoSemDisciplinasDTOListToAlunoList( disciplinaDetalhadaDTO.getAlunos() ) );
 
         return disciplina;
-    }
-
-    private String disciplinaProfessorNome(Disciplina disciplina) {
-        if ( disciplina == null ) {
-            return null;
-        }
-        Professor professor = disciplina.getProfessor();
-        if ( professor == null ) {
-            return null;
-        }
-        String nome = professor.getNome();
-        if ( nome == null ) {
-            return null;
-        }
-        return nome;
     }
 
     protected AlunoSemDisciplinasDTO alunoToAlunoSemDisciplinasDTO(Aluno aluno) {
@@ -127,18 +108,6 @@ public class DisciplinaDetalhadaMapperImpl implements DisciplinaDetalhadaMapper 
         }
 
         return list1;
-    }
-
-    protected Professor disciplinaDetalhadaDTOToProfessor(DisciplinaDetalhadaDTO disciplinaDetalhadaDTO) {
-        if ( disciplinaDetalhadaDTO == null ) {
-            return null;
-        }
-
-        Professor professor = new Professor();
-
-        professor.setNome( disciplinaDetalhadaDTO.getNomeProfessor() );
-
-        return professor;
     }
 
     protected Aluno alunoSemDisciplinasDTOToAluno(AlunoSemDisciplinasDTO alunoSemDisciplinasDTO) {

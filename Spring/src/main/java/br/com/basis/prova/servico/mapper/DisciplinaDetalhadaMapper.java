@@ -13,11 +13,9 @@ import java.util.List;
 public interface DisciplinaDetalhadaMapper extends EntityMapper<DisciplinaDetalhadaDTO, Disciplina> {
 
     @Override
-    @Mapping(target = "nomeProfessor", source = "professor.nome")
     DisciplinaDetalhadaDTO toDto(Disciplina disciplina);
 
     @Override
-    @Mapping(target = "professor.nome", source = "nomeProfessor")
     Disciplina toEntity(DisciplinaDetalhadaDTO disciplinaDetalhadaDTO);
 
 

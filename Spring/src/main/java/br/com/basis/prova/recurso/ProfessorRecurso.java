@@ -1,6 +1,7 @@
 package br.com.basis.prova.recurso;
 
 
+import br.com.basis.prova.dominio.dto.DisciplinaDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
 import br.com.basis.prova.servico.ProfessorServico;
@@ -46,6 +47,11 @@ public class ProfessorRecurso {
     public ResponseEntity<Void> excluirPorMatricula(@PathVariable("matricula") String matricula) {
         professorServico.excluirPorMatricula(matricula);
         return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProfessorDTO> consultarPorId(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(professorServico.consultarPorId(id));
     }
 
     @GetMapping
